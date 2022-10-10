@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Waedist.Models.Testmoninal>
+
+@{
+    ViewData["Title"] = "Testimonials";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+
+
+
+
+
+
+
+
+
+<div style="width: 890px; " class="kanban-column">
+    <div class="kanban-column-header">
+        <h5 class="fs-0 mb-0">Doing <span class="text-500">(4)</span></h5>
+        <div class="dropdown font-sans-serif btn-reveal-trigger">
+            <button class="btn btn-sm btn-reveal py-0 px-2" type="button" id="kanbanColumn1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-h fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis-h" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z"></path></svg><!-- <span class="fas fa-ellipsis-h"></span> Font Awesome fontawesome.com --></button>
+            @*<div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="kanbanColumn1">
+                    <a class="dropdown-item" href="#!">Add Card</a><a class="dropdown-item" href="#!">Edit</a><a class="dropdown-item" href="#!">Copy link</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
+                </div>*@
+        </div>
+    </div>
+    <div class="kanban-items-container scrollbar" tabindex="0">
+        @foreach (var i in Model)
+        {
+            if (i.Status == "R")
+            {
+                <div class="kanban-item" tabindex="0" style="">
+                    <div class="card kanban-item-card hover-actions-trigger">
+
+                        <partial name="_EditStatus.cshtml" />
+                        <p class="mb-0 fw-medium font-sans-serif stretched-link" data-bs-toggle="modal" data-bs-target="#kanban-modal-1">@i.Message</p>
+                        <div class="kanban-item-footer cursor-default">
+                            <div class="text-500 z-index-2">
+                                <h4>
+                                    @i.Name
+                                </h4>
+                            </div>
+                            <div class="z-index-2">
+                                <div class="avatar avatar-l align-top ms-n2" data-bs-toggle="tooltip" title="" data-bs-original-title="Emma">
+                                    <img class="rounded-circle" src="@Url.Content("~/Images/Testimonail/" + i.Testimage)" alt="">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="kanban-column-footer">
+    </div>
+</div>
+
+
+
+
+@*<h1>Testimonials</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Testimage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Testimage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Userid)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Testmoninalid">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Testmoninalid">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Testmoninalid">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Waedist.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
+}
+
+
+
+
+
+
+
+
+<div class="col-xl-12 pe-xl-2">
+    <div class="card mb-3 h-lg-100">
+        <div class="card-header">
+            <div class="row flex-between-end">
+                <div class="col-auto align-self-center">
+                    <h5 class="mb-0" data-anchor="data-anchor" id="basic-example">Products<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a></h5>
+                </div>
+                <div class="col-auto ms-auto">
+                    <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                        <a class="btn btn-sm active" asp-controller="Products" asp-action="Create">Create New</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body bg-light">
+            <div class="tab-content">
+                <div class="row  " role="tabpanel" aria-labelledby="tab-dom-14c3402d-e89a-4345-96a2-6d6bfd4d40ed" id="dom-14c3402d-e89a-4345-96a2-6d6bfd4d40ed">
+                    @foreach (var p in Model)
+                    {
+                        <div class=" card overflow-hidden" style="width: 20rem; margin-left:65px; margin-top:30px ">
+                            <div class="card-img-top"><img style="height:400px ; margin:5px; padding:5px" class="img-fluid" src="@Url.Content("~/Images/Products/"+ p.Pic)" alt="Card image cap"></div>
+                            <div class="card-body">
+                                <h4 class="card-title">@p.Productname</h4>
+                                <h4 style="font-size:smaller" class="card-title"> Price : @p.Price</h4>
+                                <h5 style="font-size:smaller" class="card-title"> Value : @p.Productvalue</h5>
+
+
+
+                                <a style="background-color: #eeb7c3; margin-left:5px; border-color: #eeb7c3 ; border-radius:20px;" class="btn btn-primary btn-sm" asp-controller="Products" asp-action="Edit" asp-route-id="@p.Productid">Edit Product</a>
+                                <a style="margin-top: 7px;margin-left:5px; background-color: #eeb7c3; border-color: #eeb7c3 ; border-radius:20px; color:brown " asp-controller="Products" asp-action="Delete" asp-route-id="@p.Productid" class=" btn btn-primary btn-sm">Delete Product</a>
+
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>Products</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Productname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productvalue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productsize)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Productname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Productvalue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Productsize)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Productid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Productid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Productid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

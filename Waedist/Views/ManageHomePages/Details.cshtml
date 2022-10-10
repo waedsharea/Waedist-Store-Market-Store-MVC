@@ -1,0 +1,79 @@
+﻿@model Waedist.Models.Home
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Home</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Companylogo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Companylogo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tittlepic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tittlepic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tittle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tittle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Companyname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Companyname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Headertext)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Headertext)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Asidertittle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Asidertittle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Companyemail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Companyemail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Companyphone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Companyphone)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Homeid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

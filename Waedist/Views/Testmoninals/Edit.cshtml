@@ -1,0 +1,112 @@
+﻿@model Waedist.Models.Testmoninal
+
+@{
+    Layout = "_AdminDashboardLayout";
+    var id = ViewBag.TestID;
+}
+
+
+@foreach (var T in ViewBag.Testimonials)
+{
+    @if (T.Testmoninalid == id)
+    {
+<div class="card h-100">
+    <div class="card-header">
+        <h5 class="mb-0">Change State</h5>
+    </div>
+    <div class="card-body bg-light">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input asp-for="Testmoninalid" hidden />
+            <input asp-for="Name" hidden />
+            <input asp-for="Message" hidden />
+            <input asp-for="Testimage" hidden />
+
+
+            <select asp-for="Status" class="form-select mb-3" aria-label="Default select example">
+                <option value="R" selected="">Pendeng</option>
+                <option value="A">Accept</option>
+            </select>
+
+
+            <hr>
+           
+            <div style="margin-left: 700px; " class="avatar avatar-4xl">
+                <img width="50" src="@Url.Content("~/Images/Testimonial/"+T.Testimage)" alt="" />
+            </div>
+            <h5 class="d-flex justify-content-between">@T.Message<span></span><span></span></h5>
+            <p class="fs--1 text-600">@T.Name</p>
+
+            <button  style="width:10%; margin:auto;background-color: #ebb6c1; border-color: #ebb6c1;"  class="btn btn-primary d-block w-100" type="submit"><svg class="svg-inline--fa fa-lock fa-w-14 me-2" aria-hidden="true" focusable="false"  data-icon="" role="img" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg><!-- <span class="fa fa-lock me-2"></span> Font Awesome fontawesome.com -->Save Changes</button>
+        </form>
+    </div>
+</div>
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+    <h4>Testmoninal</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Testmoninalid" />
+                <div class="form-group">
+                    <label asp-for="Message" class="control-label"></label>
+                    <input asp-for="Message" class="form-control" />
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Testimage" class="control-label"></label>
+                    <input asp-for="Testimage" class="form-control" />
+                    <span asp-validation-for="Testimage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    <input asp-for="Status" class="form-control" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Userid" class="control-label"></label>
+                    <select asp-for="Userid" class="form-control" asp-items="ViewBag.Userid"></select>
+                    <span asp-validation-for="Userid" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>*@

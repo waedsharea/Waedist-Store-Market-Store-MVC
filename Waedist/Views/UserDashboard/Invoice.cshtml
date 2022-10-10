@@ -1,0 +1,426 @@
+﻿
+
+
+
+@model IEnumerable<Waedist.Models.JoinUserOrder>
+
+@{
+    ViewData["Title"] = "Dashboard| Invoice";
+    Layout = null;
+    string time = DateTime.Now.ToString("t");
+    string Date = DateTime.Now.ToString("dd-MM-yyyy");
+
+    var Total = 0.0;
+    var Tot = 0.0;
+    var tax = 0.0;
+    var i = 0;
+    var orderid = ViewBag.Orderid;
+    foreach (var item in Model)
+
+    {
+
+        if (item.orderproduct.Status == "1" && item.useraccount.Userid == ViewBag.UserId && item.order.Display == "0")
+        {
+            foreach (var O in ViewBag.Orderid)
+            {
+                if (O == item.order.Orderid)
+                {
+                    Total = Total + Convert.ToDouble(item.orderproduct.Totalamount);
+                }
+            }
+        }
+        tax = Total * 0.05;
+
+        Tot = Total + 10 + tax;
+
+    }
+}
+
+<style>
+    .dataTables_info {
+        font-size: xx-small;
+        margin-left: 5px;
+    }
+
+    .paginate_button previous disabled {
+        font-size: xx-small;
+        margin: 5px;
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        padding: .5rem .75rem;
+        position: relative;
+        display: block;
+        color: #fff;
+        background-color: #ebb6c1;
+        border: 1pxsolidvar(--falcon-pagination-border-color);
+        -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    }
+
+    .paginate_button {
+        font-size: xx-small;
+        margin: 10px;
+        margin: 5px;
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        padding: .5rem .75rem;
+        position: relative;
+        color: #fff;
+        background-color: #ebb6c1;
+        border: 1pxsolidvar(--falcon-pagination-border-color);
+        -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    }
+
+        .paginate_button.active {
+            z-index: 3;
+            color: #fff;
+            background-color: #bfc9d7;
+            border-color: #fdfdfd;
+        }
+
+
+
+
+
+        .paginate_button.hoover {
+            text-decoration: none;
+            color: white;
+            background-color: darkgrey;
+        }
+
+
+
+        .paginate_button current {
+            display: none;
+        }
+
+        .paginate_button next disabled {
+            display: none;
+        }
+
+    .aria-controls {
+        border-radius: 20px;
+    }
+
+    .buttons-html5 {
+        margin-top: 30px;
+        background-color: #eeb0bc;
+        border-color: #eeb0bc;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        ;
+        width: 100px;
+        font-family: Arial;
+        margin: 10px;
+    }
+</style>
+
+@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="shortcut icon" href="~/Images/wLogo.png" type="image/x-icon">
+
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>Dashboard | Invoice</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/DashboardStatics/img/favicons/apple-touch-icon.png">
+
+    <link rel="manifest" href="~/DashboardStatics/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="~/DashboardStatics/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <script href="~/DashboardStatics/js/config.js"></script>
+    <script href="~/DashboardStatics/vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
+    <link href="~/DashboardStatics/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link href="~/DashboardStatics/vendors/prism/prism-okaidia.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+    <link href="~/DashboardStatics/vendors/overlayscrollbars/OverlayScrollbars.min.css" rel="stylesheet">
+    <link href="~/DashboardStatics/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
+    <link href="~/DashboardStatics/css/theme.min.css" rel="stylesheet" id="style-default">
+    <link href="~/DashboardStatics/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
+    <link href="~/DashboardStatics/css/user.min.css" rel="stylesheet" id="user-style-default">
+    <script>
+        var isRTL = JSON.parse(localStorage.getItem('isRTL'));
+        if (isRTL) {
+            var linkDefault = document.getElementById('style-default');
+            var userLinkDefault = document.getElementById('user-style-default');
+            linkDefault.setAttribute('disabled', true);
+            userLinkDefault.setAttribute('disabled', true);
+            document.querySelector('html').setAttribute('dir', 'rtl');
+        } else {
+            var linkRTL = document.getElementById('style-rtl');
+            var userLinkRTL = document.getElementById('user-style-rtl');
+            linkRTL.setAttribute('disabled', true);
+            userLinkRTL.setAttribute('disabled', true);
+        }
+    </script>
+</head>
+<body style=" background-color: #f5f5f5; ">
+    <main class="main" id="top">
+        <div class="container" data-layout="container">
+            <script>
+                var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+                if (isFluid) {
+                    var container = document.querySelector('[data-layout]');
+                    container.classList.remove('container');
+                    container.classList.add('container-fluid');
+                }
+            </script>
+            <div class="content">
+
+
+                <div>
+
+
+
+                    @*RENDERRRRRRRRRRR BODYYYYYYYYYYYYYYYYY*@
+
+
+
+
+
+
+
+
+                    <div style=" width: 80%; margin: auto; margin-top: 20px;" class="card mb-3">
+                        <div class="card-body">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-md">
+                                    <h5 class="mb-2 mb-md-0"></h5>
+                                </div>
+                                <div class="col-auto">
+                                    <form metod="post" asp-controller="UserDashboard" asp-action="End">
+                                        <div class="col-md-auto"><button type="submit" class="btn btn-sm btn-outline-secondary border-300 me-2" <svg class="svg-inline--fa fa-chevron-left fa-w-10 me-1" data-fa-transform="shrink-4" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="" style="transform-origin: 0.3125em 0.5em;"><g transform="translate(160 256)"><g transform="translate(0, 0)  scale(0.75, 0.75)  rotate(0 0 0)"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" transform="translate(-160 -256)"></path></g></g></svg><!-- <span class="fas fa-chevron-left me-1" data-fa-transform="shrink-4"></span> Font Awesome fontawesome.com -->Continue Shopping</button></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style=" width: 80%; margin: auto; margin-top: 20px;" class="card mb-3">
+                        <div class="card-body">
+                            <div class="row align-items-center text-center mb-3">
+                                <div class="col-sm-6 text-sm-start"><img src="~/Images/wLogo.png" alt="invoice" width="150"></div>
+                                <div class="col text-sm-end mt-3 mt-sm-0">
+                                    <h2 class="mb-3">Invoice</h2>
+                                    <h5>Waedist Online Shops</h5>
+                                    <p class="fs--1 mb-0"><br></p>
+                                </div>
+                                <div class="col-12">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-500">Invoice to</h6>
+                                    <h5>
+                                        @ViewBag.UserName
+                                    </h5>
+                                    <p class="fs--1">@ViewBag.UserPhone<br><br></p>
+                                    <p class="fs--1">
+                                        <a href="mailto:@ViewBag.UserEmail">
+                                            @ViewBag.UserEmail
+                                        </a><br><a href="tel:444466667777"></a>
+                                    </p>
+                                </div>
+                                <div class="col-sm-auto ms-auto">
+                                    <div class="table-responsive">
+                                        <table  class="table table-sm table-borderless fs--1">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="text-sm-end"></th>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-sm-end">Invoice Date:</th>
+                                                    <td>@Date</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-sm-end">Invoice Time:</th>
+                                                    <td>@time</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-sm-end">Payment Due:</th>
+                                                    <td>Visa Card</td>
+                                                </tr>
+                                                <tr class="alert-success fw-bold">
+                                                    <th class="text-sm-end">Invoice Amount</th>
+                                                    <td> $@Total</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive scrollbar mt-4 fs--1">
+                                <table id="Report" class="table table-striped border-bottom">
+                                    <thead class="light">
+                                        <tr style="background-color: #ebb6c1" class=" text-white dark__bg-1000">
+                                            <th class="border-0">Products</th>
+                                            <th class="border-0 text-center">Quantity</th>
+                                            <th class="border-0 text-end">Rate</th>
+                                            <th class="border-0 text-end">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            @if (item.orderproduct.Status == "1" && item.useraccount.Userid == ViewBag.UserId && item.order.Display == "0")
+                                            {
+                                                @foreach (var O in ViewBag.Orderid)
+                                                {
+                                                    @if (item.order.Orderid == O)
+                                                    {
+
+                                                        <tr>
+                                                            <td class="align-middle">
+                                                                <h6 class="mb-0 text-nowrap">@Html.DisplayFor(modelitem => item.product.Productname)</h6>
+                                                            </td>
+                                                            <td class="align-middle text-center">@Html.DisplayFor(modelitem => item.orderproduct.Qty)</td>
+                                                            <td class="align-middle text-end">@Html.DisplayFor(modelitem => item.product.Price)</td>
+                                                            <td class="align-middle text-end">@Html.DisplayFor(modelitem => item.orderproduct.Totalamount)</td>
+                                                        </tr>
+
+                                                    }
+
+                                                }
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="col-auto">
+                                    <table class="table table-sm table-borderless fs--1 text-end">
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-900">Delivery commission:</th>
+                                                <td class="fw-semi-bold">$0 </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-900">Tax 0%:</th>
+                                                <td class="fw-semi-bold">$0</td>
+                                            </tr>
+                                            <tr class="border-top">
+                                                <th class="text-900">Total:</th>
+                                                <td class="fw-semi-bold">$@Total</td>
+                                            </tr>
+                                            <tr class="border-top border-top-2 fw-bolder text-900">
+                                                <th>Amount Due:</th>
+                                                <td>$@Total </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-light">
+                            <form method="post" asp-controller="UserDashboard" asp-action="End">
+                                <div class="col-md-auto"><button type="submit" class="btn btn-sm btn-outline-secondary border-300 me-2" <svg class="svg-inline--fa fa-chevron-left fa-w-10 me-1" data-fa-transform="shrink-4" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="" style="transform-origin: 0.3125em 0.5em;"><g transform="translate(160 256)"><g transform="translate(0, 0)  scale(0.75, 0.75)  rotate(0 0 0)"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" transform="translate(-160 -256)"></path></g></g></svg><!-- <span class="fas fa-chevron-left me-1" data-fa-transform="shrink-4"></span> Font Awesome fontawesome.com -->Continue Shopping</button></div>
+                            </form>
+                            <p class="fs--1 mb-0"><strong>Notes: </strong>We really appreciate your business and if there’s anything else we can do, please let us know!</p>
+                        </div>
+                    </div>
+
+
+
+                    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+                    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+                    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+                    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+                    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+                    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+                    <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+
+                    <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+                    <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#Report').DataTable({
+                                dom: 'Bfrtip',
+
+                                buttons: ['copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5']
+                            }
+                            );
+                            $('#Report').DataTable().buttons()
+                        });
+                    </script>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+    <script src="~/DashboardStaticsvendors/echarts/echarts.min.js"></script>
+
+    <script src="~/DashboardStatics/vendors/popper/popper.min.js"></script>
+    <script src="~/DashboardStatics/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="~/DashboardStatics/vendors/anchorjs/anchor.min.js"></script>
+    <script src="~/DashboardStatics/vendors/is/is.min.js"></script>
+    <script src="~/DashboardStatics/vendors/echarts/echarts.min.js"></script>
+    <script src="~/DashboardStatics/vendors/prism/prism.js"></script>
+    <script src="~/DashboardStatics/vendors/fontawesome/all.min.js"></script>
+    <script src="~/DashboardStatics/vendors/lodash/lodash.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="~/DashboardStatics/vendors/list.js/list.min.js"></script>
+    <script src="~/DashboardStatics/js/theme.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="~/DashboardStatics/vendors/dropzone/dropzone.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>

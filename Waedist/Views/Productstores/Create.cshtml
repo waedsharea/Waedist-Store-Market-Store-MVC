@@ -1,0 +1,127 @@
+﻿@model Waedist.Models.Productstore
+
+@{
+    Layout = "_AdminDashboardLayout";
+    ViewData["Title"] = "Products & Stores";
+
+}
+
+
+
+<div class="col-xl-12 pe-xl-2">
+    <div class="card mb-3 h-lg-100">
+        <div class="card-header">
+            <div class="row flex-between-end">
+                <div class="col-auto align-self-center">
+                    <h5 class="mb-0" data-anchor="data-anchor" id="basic-example">Products<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a></h5>
+                </div>
+                <div class="col-auto ms-auto">
+                    <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                        <a class="btn btn-sm active" asp-controller="Products" asp-action="Create">Create New</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body bg-light">
+            <div class="tab-content">
+                <div class="row  " role="tabpanel" aria-labelledby="tab-dom-14c3402d-e89a-4345-96a2-6d6bfd4d40ed" id="dom-14c3402d-e89a-4345-96a2-6d6bfd4d40ed">
+                    @foreach (var p in ViewBag.products)
+                    {
+                        <div class=" card overflow-hidden" style="width: 20rem; margin-left:65px; margin-top:30px ">
+                            <div class="card-img-top"><img style="height:280px ; margin:5px; padding:5px" class="img-fluid" src="@Url.Content("~/Images/Products/"+ p.Pic)" alt="Card image cap"></div>
+                            <div class="card-body">
+                                <h4 class="card-title">@p.Productname</h4>
+                                <h4 style="font-size:small" class="card-title"> Price : @p.Price</h4>
+                                <h5 style="font-size:small" class="card-title"> Value : @p.Productvalue</h5>
+                                <form asp-controller="ProductStores" asp-action="Create" method="post">
+                                 
+                                <input asp-for="Productid" value="@p.Productid" hidden />
+                                    <select asp-for="Storeid" class="form-select" aria-label="Default select example">
+                                        <option selected="">Select Store</option>
+                                        @foreach (var s in ViewBag.stores)
+                                        {
+                                            <option value="@s.Storeid">@s.Storename</option>
+                                        }
+                                    </select>
+                                    <div class="row">
+                                        <button style=" width: 200px; margin: auto; margin-top: 10px; background-color: #eeb0bc; border-color: #eeb0bc; border-radius: 20px; " class="btn btn-primary rounded-sm" type="submit" value="Create">Create</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Create</title>
+    </head>
+    <body>
+
+    <h4>Productstore</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Productid" class="control-label"></label>
+                    <select asp-for="Productid" class ="form-control" asp-items="ViewBag.Productid"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Storeid" class="control-label"></label>
+                    <select asp-for="Storeid" class ="form-control" asp-items="ViewBag.Storeid"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    </body>
+    </html>*@

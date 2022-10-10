@@ -1,0 +1,332 @@
+﻿@model Waedist.Models.Useraccount
+
+@{
+    ViewData["Title"] = "Waedist| Register";
+    Layout = null;
+
+
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Waedist| Register</title>
+    <link rel="shortcut icon" href="~/Images/wLogo.png" type="image/x-icon">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="colorlib.com">
+    <link href="~/ShopsCardsStatics/CardsCSS.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/animate.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/aos.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/flaticon.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/icomoon.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/style.css">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="~/RegisterStatics/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/RegisterStatics/css/style.css">
+    <link href="~/RegisterStatics/css/Registercss.css" rel="stylesheet" />
+    <style>
+        .error-text {
+      
+            display: none;
+        }
+
+        form .field .show {
+          
+            transform: translateY(-50%);
+        
+            user-select: none;
+            cursor: pointer;
+            display: none;
+        }
+
+            form .field .show.active {
+                color: #27ae60;
+            }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-dark" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">WAEDist</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li style="color:black" class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+
+                    <li style="color:black" class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li style="color:black" class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li style="color:black" class="nav-item"><a href="contact.html" class="nav-link">Login</a></li>
+                    <li style="color:black" class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li style="color:black" class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card">
+                    <h2 class="card-title text-center">Register <a href=""></a></h2>
+                    <div class="card-body py-md-4">
+                        <form asp-controller="Authentication" asp-action="Register" method="post" enctype="multipart/form-data" _lpchecked="1">
+                            <div class="form-header" style="margin-top:0">
+                                <div class="form-group">
+                                    <div class="avartar">
+                                        <a href="#">
+                                            <img src="/RegisterStatics/images/avartar.png" alt="">
+                                        </a>
+                                        <div class="avartar-picker">
+                                            <input required accept="image/*" type="file" name="upload" id="upload" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                                            <label for="upload">
+                                                <span class="d-inline-block"><i class="zmdi zmdi-camera"></i>Choose Picture</span>
+
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="Fullname" type="text" class="form-control" id="name" placeholder="Full Name">
+                                        <span asp-validation-for="Fullname" class="text-danger"></span>
+
+                                    </div>
+
+                                    <p id="msg" style="margin-left:15px;color:red">Email have been token by another acount !<span style="color:red"></span></p>
+
+                                    <div class="form-group">
+                                        <input asp-for="Email" name="Email" type="email" class="form-control" id="email" placeholder="Email">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input asp-for="Phonenumber" type="text" class="form-control" id="name" placeholder="Mobile Number">
+                                        <span asp-validation-for="Phonenumber" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input asp-for="Password" type="password" class="form-control" id="Pass1" placeholder="Password">
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+
+                                    </div>
+                                    @********************@
+
+
+
+                                    <button type="submit" value="Register" class="btn btn-primary">Create Account</button>
+
+                                    <div class="d-flex flex-row align-items-center justify-content-between">
+                                        <a asp-action="Login">Already have an account? Login</a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*
+        <div class="wrapper">
+            <form action="">
+                <div id="wizard">
+                    <!-- SECTION 1 -->
+                    <h4></h4>
+                    <section>
+                        <div class="form-header">
+                            <div class="avartar">
+                                <a href="#">
+                                    <img src="/RegisterStatics/images/avartar.png" alt="">
+                                </a>
+                                <div class="avartar-picker">
+                                    <input type="file" name="file-1[]" id="file-1" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                                    <label for="file-1">
+                                        <i class="zmdi zmdi-camera"></i>
+                                        <span>Choose Picture</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-holder active">
+                                    <input type="text" placeholder="First Name" class="form-control">
+                                </div>
+                                <div class="form-holder">
+                                    <input type="text" placeholder="Last Name" class="form-control">
+                                </div>
+                                <div class="form-holder">
+                                    <input type="text" placeholder="Team Name" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-holder">
+                            <input type="text" placeholder="Email" class="form-control">
+                        </div>
+                        <div class="form-holder">
+                            <input type="password" placeholder="Create a password" class="form-control">
+                        </div>
+                    </section>
+
+                    <!-- SECTION 2 -->
+                    <h4></h4>
+                    <section>
+                        <div class="grid">
+                            <div class="row">
+                                <a href="#" class="grid-item" style="background-image: url(images/programming-bg.jpg);">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/programming.png" alt="">
+                                        <span>Programming</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="grid-item" style="background-image: url('images/research-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/research.png" alt="">
+                                        <span>Research</span>
+                                    </div>
+
+                                </a>
+                                <a href="#" class="grid-item" style="background-image: url('images/teacher-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/teacher.png" alt="">
+                                        <span>Teacher</span>
+                                    </div>
+
+                                </a>
+                            </div>
+                            <div class="row">
+                                <a href="#" class="grid-item" style="background-image: url('images/tour-guide-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/tour-guide.png" alt="">
+                                        <span>Tour Guide</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="grid-item" style="background-image: url('images/business-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/business.png" alt="">
+                                        <span>Business</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="grid-item" style="background-image: url('images/artist-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/artist.png" alt="">
+                                        <span>Artist</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SECTION 3 -->
+                    <h4></h4>
+                    <section>
+
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="Street Name" class="form-control">
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Street Number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="City" class="form-control">
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Country" class="form-control">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </div>
+
+
+    *@
+    <!-- Template created and distributed by Colorlib -->
+    
+
+</body>
+</html>
+
+@*
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Register">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Fullname" class="control-label"></label>
+                    <input asp-for="Fullname" class="form-control" />
+                    <span asp-validation-for="Fullname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phonenumber" class="control-label"></label>
+                    <input asp-for="Phonenumber" class="form-control" />
+                    <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Pic" class="control-label"></label>
+                    <input asp-for="Pic" class="form-control" />
+                    <span asp-validation-for="Pic" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Roleid" class="control-label"></label>
+                    <select asp-for="Roleid" class ="form-control" asp-items="ViewBag.Roleid"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+
+*@

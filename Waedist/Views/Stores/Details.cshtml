@@ -1,0 +1,61 @@
+﻿@model Waedist.Models.Store
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Store</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Storename)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Storename)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Smallpic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Smallpic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Headpic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Headpic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Totalsales)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Totalsales)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Monthlyrent)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Monthlyrent)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category.Categoryid)
+        </dd>
+   
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

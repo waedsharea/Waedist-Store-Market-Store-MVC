@@ -1,0 +1,197 @@
+﻿@model Waedist.Models.Aboutu
+
+@{
+    ViewData["Title"] = "EditAbout";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+
+
+
+<div class="card h-100">
+    <div class="card-header bg-light">
+        <div class="row justify-content-between">
+            <div class="col">
+                <div class="d-flex">
+                  
+                    <div class="flex-1 align-self-center ms-2">
+                        @foreach (var w in ViewBag.abouts)
+                        {
+                            <p class="mb-1 lh-1"><a style="color: #ebb6c1" class="fw-semi-bold" asp-controller="Home" asp-action="Aboutus">@w.Tittle @w.Headline @w.Text1 @w.Text2</a></p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="dropdown font-sans-serif">
+                    <a href="#Edit" class="btn btn-sm dropdown-toggle p-1 dropdown-caret-none" type="button" id="post-album-action" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-h fa-w-16 fs--1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis-h" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z"></path></svg><!-- <span class="fas fa-ellipsis-h fs--1"></span> Font Awesome fontawesome.com --></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body overflow-hidden">
+      
+        <p>
+            @foreach (var w in ViewBag.abouts)
+            {
+                @w.Text3; 
+                @w.Text4;
+            }
+            </p>
+        <div class="row mx-n4 ">
+            @foreach (var w in ViewBag.abouts)
+            {
+                <div class="col-4 row-cols-8 p-xl-2"><a href="" data-gallery="gallery-1"><img  style="margin-right:0px;  height:665px" class="img-fluid rounded" src="@Url.Content("~/Images/About/" + w.Tittlepic) " height="600" alt=""></a></div>
+            }
+                <div class="col-8 row-cols-8 p-1">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">Manage About</h5>
+                        </div>
+                        <div id="Edit" class="card-body bg-light pb-0">
+                            <a class="mb-4 d-block d-flex align-items-center" href="#experience-form" data-bs-toggle="collapse" aria-expanded="true" aria-controls="experience-form"><span class="circle-dashed"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <span class="fas fa-plus"></span> Font Awesome fontawesome.com --></span><span class="ms-3"></span></a>
+                            <div class="collapse show" id="experience-form">
+                                <form asp-action="EditAbout" enctype="multipart/form-data" method="post" class="row">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="Aboutid" />
+                                    <input type="hidden" asp-for="Image" />
+                                    <input type="hidden" asp-for="Tittlepic" />
+
+
+                                    <div class="col-3 mb-3 text-lg-end">
+                                        <label class="form-label" asp-for="Headline">Head Line</label>
+                                    </div>
+                                    <div class="col-9 col-sm-7 mb-3">
+                                        <input asp-for="Headline" class="form-control form-control-sm" type="text">
+                                    </div>
+                                    <div class="col-3 mb-3 text-lg-end">
+                                        <label asp-for="Text1" class="form-label">Sub Head 1</label>
+                                    </div>
+                                    <div class="col-9 col-sm-7 mb-3">
+                                        <input asp-for="Text1" class="form-control form-control-sm" type="text">
+                                    </div>
+                                    <div class="col-3 mb-3 text-lg-end">
+                                        <label asp-for="Text2" class="form-label">Sub Head 2 </label>
+                                    </div>
+                                    <div class="col-9 col-sm-7 mb-3">
+                                        <input asp-for="Text2" class="form-control form-control-sm" type="text">
+                                    </div>
+                                    <div class="col-3 mb-3 text-lg-end">
+                                        <label asp-for="Text3" class="form-label">Text 1 </label>
+                                    </div>
+                                    <div class="col-9 col-sm-7 mb-3">
+                                        <textarea asp-for="Text3" class="form-control form-control-sm" rows="3"> </textarea>
+                                    </div>
+                                    <div class="col-3 mb-3 text-lg-end">
+                                        <label asp-for="Text4" class="form-label">Text 2 </label>
+                                    </div>
+                                    <div class="col-9 col-sm-7 mb-3">
+                                        <textarea asp-for="Text4" class="form-control form-control-sm" rows="3"> </textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="img" class="control-label">Header Image</label>
+                                        <input type="file" accept="image/*" name="img" id="img" class="form-control" />
+                                    </div>
+
+                                    <div class="col-9 col-sm-7 offset-3">
+                                        <button style=" margin-left:250px; margin-top: 10px; background-color: #eeb0bc; border-color: #eeb0bc; border-radius: 20px; " class="btn btn-primary rounded-sm" type="submit">Update </button>
+                                    </div>
+                                </form>
+                                <div class="border-dashed-bottom my-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>EditAbout</h1>
+
+<h4>Aboutu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditAbout">
+      
+            <div class="form-group">
+                <label asp-for="Tittlepic" class="control-label"></label>
+                <input asp-for="Tittlepic" class="form-control" />
+                <span asp-validation-for="Tittlepic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tittle" class="control-label"></label>
+                <input asp-for="Tittle" class="form-control" />
+                <span asp-validation-for="Tittle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Headline" class="control-label"></label>
+                <input asp-for="Headline" class="form-control" />
+                <span asp-validation-for="Headline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text1" class="control-label"></label>
+                <input asp-for="Text1" class="form-control" />
+                <span asp-validation-for="Text1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text2" class="control-label"></label>
+                <input asp-for="Text2" class="form-control" />
+                <span asp-validation-for="Text2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text3" class="control-label"></label>
+                <input asp-for="Text3" class="form-control" />
+                <span asp-validation-for="Text3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text4" class="control-label"></label>
+                <input asp-for="Text4" class="form-control" />
+                <span asp-validation-for="Text4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Video" class="control-label"></label>
+                <input asp-for="Video" class="form-control" />
+                <span asp-validation-for="Video" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+

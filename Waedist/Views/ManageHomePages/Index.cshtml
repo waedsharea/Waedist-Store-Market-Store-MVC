@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Waedist.Models.Home>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Companylogo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tittlepic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tittle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Companyname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Headertext)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asidertittle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Companyemail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Companyphone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@Url.Content("~/Images/Home/"+ item.Companylogo)" style="height:250px" ; width:"250px;" />
+
+            </td>
+            <td>
+                <img src=" style="height:250px" ; width:"250px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tittle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Companyname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headertext)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asidertittle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Companyemail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Companyphone)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Homeid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Homeid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Homeid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

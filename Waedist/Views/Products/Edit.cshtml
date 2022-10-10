@@ -1,0 +1,133 @@
+﻿@model Waedist.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+
+
+<div class="card-body overflow-hidden">
+
+    <p>
+
+    </p>
+    <div class="row mx-n4 ">
+
+        <div class="col-4 row-cols-8 p-xl-2">
+
+            @foreach (var c in ViewBag.products)
+            {
+                if (c.Productid == ViewBag.productid)
+                {
+                    <img style="margin-right:0px ;  height:550px" class="img-fluid rounded" src="@Url.Content("~/Images/Products/" + c.Pic)" alt="">
+                }
+            }
+        </div>
+        <div class="col-8 row-cols-8 p-1">
+            <div style="height:550px" class=" card ">
+                <div class="card-header">
+                    <h5 class="mb-0">Edit Product</h5>
+                    <div style="margin-bottom: 20px; margin-left: 390px; " class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                        <a class="btn btn-sm active" asp-controller="Products" asp-action="Index">Back to the List</a>
+                    </div>
+
+                </div>
+                <div id="Edit" class="card-body bg-light pb-0">
+                    <div class="collapse show" id="experience-form">
+                        <form asp-controller="Products" asp-action="Edit" enctype="multipart/form-data" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Productid" />
+                            <input type="hidden" asp-for="Pic" />
+
+                            <div class="col-9 col-sm-7 mb-3">
+                                <label style="margin-right:70px" class="control-label" asp-for="Productname">Product Name</label>
+
+                                <input style="width:535px" asp-for="Productname" class="form-control form-control-sm" type="text">
+                            </div>
+                            <div class="col-9 col-sm-7 mb-3">
+                                <label style="margin-right:70px" class="control-label" asp-for="Price">Product Price</label>
+
+                                <input style="width:535px" asp-for="Price" class="form-control form-control-sm" type="number">
+                            </div>
+                            <div class="col-9 col-sm-7 mb-3">
+                                <label style="margin-right:70px" class="control-label" asp-for="Productvalue">Product Value</label>
+
+                                <input style="width:535px" asp-for="Productvalue" class="form-control form-control-sm" type="number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="img" class="control-label"></label>
+                                <input type="file" accept="image/*" name="img" id="img" class="form-control" />
+                            </div>
+
+                            <div class="col-9 col-sm-7 offset-3">
+                                <button style=" margin-left:250px; margin-top: 10px; background-color: #eeb0bc; border-color: #eeb0bc; border-radius: 20px; " class="btn btn-primary rounded-sm" type="submit">Update </button>
+                            </div>
+                        </form>
+                        <div class="border-dashed-bottom my-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>Edit</h1>
+
+    <h4>Product</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Productid" />
+                <div class="form-group">
+                    <label asp-for="Productname" class="control-label"></label>
+                    <input asp-for="Productname" class="form-control" />
+                    <span asp-validation-for="Productname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Productvalue" class="control-label"></label>
+                    <input asp-for="Productvalue" class="form-control" />
+                    <span asp-validation-for="Productvalue" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Pic" class="control-label"></label>
+                    <input asp-for="Pic" class="form-control" />
+                    <span asp-validation-for="Pic" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Productsize" class="control-label"></label>
+                    <input asp-for="Productsize" class="form-control" />
+                    <span asp-validation-for="Productsize" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+

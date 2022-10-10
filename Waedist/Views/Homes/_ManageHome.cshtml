@@ -1,0 +1,69 @@
+﻿@model Waedist.Models.Home
+
+<h4>Home</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ManageHome">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Companylogo" class="control-label"></label>
+                <input asp-for="Companylogo" class="form-control" />
+                <span asp-validation-for="Companylogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tittlepic" class="control-label"></label>
+                <input asp-for="Tittlepic" class="form-control" />
+                <span asp-validation-for="Tittlepic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tittle" class="control-label"></label>
+                <input asp-for="Tittle" class="form-control" />
+                <span asp-validation-for="Tittle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Companyname" class="control-label"></label>
+                <input asp-for="Companyname" class="form-control" />
+                <span asp-validation-for="Companyname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Headertext" class="control-label"></label>
+                <input asp-for="Headertext" class="form-control" />
+                <span asp-validation-for="Headertext" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asidertittle" class="control-label"></label>
+                <input asp-for="Asidertittle" class="form-control" />
+                <span asp-validation-for="Asidertittle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Companyemail" class="control-label"></label>
+                <input asp-for="Companyemail" class="form-control" />
+                <span asp-validation-for="Companyemail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Companyphone" class="control-label"></label>
+                <input asp-for="Companyphone" class="form-control" />
+                <span asp-validation-for="Companyphone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

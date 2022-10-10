@@ -1,0 +1,114 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\DashboardStatics\assets\**" />
+    <Content Remove="wwwroot\DashboardStatics\assets\**" />
+    <EmbeddedResource Remove="wwwroot\DashboardStatics\assets\**" />
+    <None Remove="wwwroot\DashboardStatics\assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="3.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="MimeKit" Version="3.2.0" />
+    <PackageReference Include="ODP.NetCore" Version="2.0.12" />
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="5.21.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\DashboardStatics\css\theme-rtl.css.map" />
+    <None Include="wwwroot\DashboardStatics\css\theme-rtl.min.css.map" />
+    <None Include="wwwroot\DashboardStatics\css\theme.css.map" />
+    <None Include="wwwroot\DashboardStatics\css\theme.min.css.map" />
+    <None Include="wwwroot\DashboardStatics\css\user-rtl.css.map" />
+    <None Include="wwwroot\DashboardStatics\css\user-rtl.min.css.map" />
+    <None Include="wwwroot\DashboardStatics\css\user.css.map" />
+    <None Include="wwwroot\DashboardStatics\css\user.min.css.map" />
+    <None Include="wwwroot\DashboardStatics\data\usa.js" />
+    <None Include="wwwroot\DashboardStatics\data\world.js" />
+    <None Include="wwwroot\DashboardStatics\img\crm\call.svg" />
+    <None Include="wwwroot\DashboardStatics\img\crm\email.svg" />
+    <None Include="wwwroot\DashboardStatics\img\crm\other.svg" />
+    <None Include="wwwroot\DashboardStatics\img\crm\social.svg" />
+    <None Include="wwwroot\DashboardStatics\img\favicons\site.webmanifest" />
+    <None Include="wwwroot\DashboardStatics\img\icons\arrows-h.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\cloud-download-.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\cloud-download.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\cloud-upload.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\edit-alt-.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\edit-alt.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\folder-open-solid.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\folder-solid.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\free.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\icon-angle-right.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\left-arrow-from-left.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\moon.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\paragraph.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\pro.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\sent.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\shield.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\1.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\2.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\3.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\4.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\5.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\6.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\calendar.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\editing.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\image.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\location.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\paper-plane.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\spot-illustrations\startup.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\star_on.svg" />
+    <None Include="wwwroot\DashboardStatics\img\icons\sun.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\1.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\2.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\3.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\4.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\5.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\6.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\calendar.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\editing.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\image.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\location.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\paper-plane.svg" />
+    <None Include="wwwroot\DashboardStatics\img\illustrations\startup.svg" />
+    <None Include="wwwroot\DashboardStatics\js\config.js" />
+    <None Include="wwwroot\DashboardStatics\js\config.js.map" />
+    <None Include="wwwroot\DashboardStatics\js\echart-example.js" />
+    <None Include="wwwroot\DashboardStatics\js\echart-example.js.map" />
+    <None Include="wwwroot\DashboardStatics\js\echarts-example.js" />
+    <None Include="wwwroot\DashboardStatics\js\echarts-example.js.map" />
+    <None Include="wwwroot\DashboardStatics\js\emoji-button.js" />
+    <None Include="wwwroot\DashboardStatics\js\flatpickr.js" />
+    <None Include="wwwroot\DashboardStatics\js\theme.js" />
+    <None Include="wwwroot\DashboardStatics\js\theme.js.map" />
+    <None Include="wwwroot\DashboardStatics\js\theme.min.js" />
+    <None Include="wwwroot\DashboardStatics\js\theme.min.js.map" />
+    <None Include="wwwroot\RegisterStatics\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.svg" />
+    <None Include="wwwroot\RegisterStatics\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <None Include="wwwroot\RegisterStatics\js\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\RegisterStatics\js\jquery.steps.js" />
+    <None Include="wwwroot\RegisterStatics\js\main.js" />
+    <None Include="wwwroot\RegisterStatics\js\theme-map.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\About\" />
+    <Folder Include="wwwroot\Images\Home\" />
+    <Folder Include="wwwroot\Images\Category\" />
+    <Folder Include="wwwroot\Images\Testimonial\" />
+    <Folder Include="wwwroot\Images\Products\" />
+  </ItemGroup>
+
+</Project>

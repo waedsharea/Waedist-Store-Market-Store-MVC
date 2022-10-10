@@ -1,0 +1,157 @@
+﻿@model Waedist.Models.Store
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+
+
+<div class="card-body overflow-hidden">
+
+    <p>
+
+    </p>
+    <div class="row mx-n4 ">
+        <div style="width:66%;margin:auto; margin-top:80px  " class="col-8 row-cols-8 p-1">
+            <div style="height: 450px; " class=" card ">
+                <div class="card-header">
+                    <h5 class="mb-0">Craete Store</h5>
+                </div>
+                <div class="col-auto ms-auto">
+                    <div style="margin-bottom:20px; margin-right:15px" class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                        <a class="btn btn-sm active" asp-controller="Stores" asp-action="Index">Back to the List</a>
+                    </div>
+                </div>
+                <div id="Edit" class="card-body bg-light pb-0">
+                    <div class="collapse show" id="experience-form">
+                        <form asp-action="Create" enctype="multipart/form-data" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Totalsales" />
+                            <input type="hidden" asp-for="Smallpic" />
+                            <input type="hidden" asp-for="Headpic" />
+
+
+
+                            <div class="col-9 col-sm-7 mb-3">
+                                <label style="margin-right:70px" class="control-label" asp-for="Storename">Store Name</label>
+
+                                <input style="width:535px" asp-for="Storename" class="form-control form-control-sm" type="text">
+                            </div>
+                          
+
+                            <div class="form-group">
+                                <label asp-for="Categoryid" class="control-label">Category</label>
+                                <select asp-for="Categoryid" class="form-select" aria-label="Default select example">
+                                    <option selected="">Open this select menu</option>
+                                    @foreach (var i in ViewBag.CategoriesName)
+                                    {
+                                        ViewBag.catname = i.Categoryname;
+                                        <option style="border-color:gainsboro;width:200px" class="text-black" value="@i.Categoryid">@ViewBag.catname</option>
+                                    }
+                                </select>
+                                <div class="col-9 col-sm-7 mb-3">
+                                    <label style="margin-right:70px" class="control-label" asp-for="Monthlyrent">Monthly Rent</label>
+                                    <input style="width:535px" asp-for="Monthlyrent" class="form-control form-control-sm" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-top:10px" for="img" class="control-label">Store Image</label>
+                                <input type="file" accept="image/*" name="img" id="img" class="form-control" />
+                            </div>
+
+                            <div class="col-9 col-sm-7 offset-3">
+                                <button style=" margin-left:270px; margin-top: 10px; background-color: #eeb0bc; border-color: #eeb0bc; border-radius: 20px; " class="btn btn-primary rounded-sm" type="submit" value="Create">Create</button>
+
+                            </div>
+
+
+
+                        </form>
+                        <div class="border-dashed-bottom my-4"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>Create</h1>
+
+<h4>Store</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Storename" class="control-label"></label>
+                <input asp-for="Storename" class="form-control" />
+                <span asp-validation-for="Storename" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Categoryid" class="control-label"></label>
+                <select asp-for="Categoryid" class="form-select" aria-label="Default select example">
+                    <option selected="">Open this select menu</option>
+                    @foreach (var i in ViewBag.CategoriesName)
+                    {
+                        ViewBag.catname = i.Categoryname;
+                        <option style="border-color:gainsboro;width:200px" class="text-black" value="@i.Categoryid">@ViewBag.catname</option>
+                    }
+                </select>
+
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="imgsmall" class="control-label"></label>
+                    <input type="file" accept="image/*" name="imgsmall" id="imgsmall" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="imglarge" class="control-label"></label>
+                    <input type="file" accept="image/*" name="imglarge" id="imglarge" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <input asp-for="Text" class="form-control" />
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" asp-for="Totalsales" />
+            <input type="hidden" asp-for="Monthlyrent" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+

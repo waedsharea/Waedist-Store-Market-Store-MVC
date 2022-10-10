@@ -1,0 +1,631 @@
+﻿@model Tuple<IEnumerable<Useraccount>, IEnumerable<PaymentUser>, IEnumerable<Store>, IEnumerable<JoinUserOrder>, IEnumerable<Orderr>, IEnumerable<PSCJoincs>, IEnumerable<Product>>
+@{
+
+    ViewData["Title"] = "Dashboard| Report";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+
+}
+
+
+
+<style>
+    .dataTables_info {
+        font-size: xx-small;
+        margin-left: 5px;
+    }
+
+    .paginate_button previous disabled {
+        font-size: xx-small;
+        margin: 5px;
+        margin-bottom: 20px;
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        padding: .5rem .75rem;
+        position: relative;
+        display: block;
+        color: #fff;
+        background-color: #ebb6c1;
+        border: 1pxsolidvar(--falcon-pagination-border-color);
+        -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    }
+
+    .paginate_button {
+        font-size: xx-small;
+        margin: 5px;
+        margin-bottom: 20px;
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        padding: .5rem .75rem;
+        position: relative;
+        color: #fff;
+        background-color: #ebb6c1;
+        border: 1pxsolidvar(--falcon-pagination-border-color);
+        -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    }
+
+        .paginate_button.active {
+            z-index: 3;
+            color: #fff;
+            background-color: #bfc9d7;
+            border-color: #fdfdfd;
+        }
+
+    input, button, select, optgroup, textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        border-radius: 5px;
+        border: solid;
+        border-color: #eeb0bc;
+        /* height: 24px; */
+    }
+
+
+
+    .paginate_button.hoover {
+        text-decoration: none;
+        color: white;
+        background-color: darkgrey;
+    }
+
+
+
+    .paginate_button current {
+        display: none;
+    }
+
+    .paginate_button next disabled {
+        display: none;
+    }
+
+    .aria-controls {
+        border-radius: 20px;
+    }
+
+    .buttons-html5 {
+        margin-top: 30px;
+        background-color: #eeb0bc;
+        border-color: #eeb0bc;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        ;
+        width: 100px;
+        font-family: Arial;
+        margin: 10px;
+    }
+</style>
+
+
+
+
+
+
+
+<div class="col-xxl-9 col-md-12">
+    <div class="card z-index-1" id="recentPurchaseTable" data-list="{&quot;valueNames&quot;:[&quot;name&quot;,&quot;email&quot;,&quot;product&quot;,&quot;payment&quot;,&quot;amount&quot;],&quot;page&quot;:7,&quot;pagination&quot;:true}">
+        <div class="card-header">
+            <div class="row flex-between-center">
+                <div class="col-6 col-sm-auto d-flex align-items-center pe-0">
+                    <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Report</h5>
+                </div>
+                <div class="col-6 col-sm-auto ms-auto text-end ps-0">
+                    <div class="d-none" id="table-purchases-actions">
+                        <div class="d-flex">
+                        </div>
+                    </div>
+                    <div id="table-purchases-replace-element">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-md-6 col-xxl-3">
+        <div class="card h-md-100 ecommerce-card-min-width">
+            <div class="card-header pb-0">
+                <h6 class="mb-0 mt-2 d-flex align-items-center">Total Sales<span class="ms-1 text-400" data-bs-toggle="tooltip" data-bs-placement="top" title="Calculated according to last week's sales"><span class="far fa-question-circle" data-fa-transform="shrink-1"></span></span></h6>
+            </div>
+            <div class="card-body d-flex flex-column justify-content-end">
+                <div class="row">
+                    <div class="col">
+                        <p class="font-sans-serif lh-1 mb-1 fs-4">$@ViewBag.Totalsales</p><span class="badge badge-soft-success rounded-pill fs--2">++</span>
+                    </div>
+                    <div class="col-auto ps-0">
+                        <div class="echart-bar-weekly-sales h-100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xxl-3">
+        <div " class="card h-md-100">
+            <div class="card-header pb-0">
+                <h6 class="mb-0 mt-2">Total Orders</h6>
+            </div>
+            <div class="card-body d-flex flex-column justify-content-end">
+                <div class="row justify-content-between">
+                    <div class="col-auto align-self-end">
+                        <div class="fs-4 fw-normal font-sans-serif text-700 lh-1 mb-1">
+                            @ViewBag.OrdersC
+                        </div><span class="badge rounded-pill fs--2 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span></span>
+                    </div>
+                    <div class="col-auto ps-0 mt-n4">
+                        <div class="echart-default-total-order" data-echarts='{"tooltip":{"trigger":"axis","formatter":"{b0} : {c0}"},"xAxis":{"data":["Week 4","Week 5","week 6","week 7"]},"series":[{"type":"line","data":[20,40,100,120],"smooth":true,"lineStyle":{"width":3}}],"grid":{"bottom":"2%","top":"2%","right":"10px","left":"10px"}}' data-echart-responsive="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row flex-between-center g-0">
+                        <div class="col-6 d-lg-block flex-between-center">
+                            <h6 class="mb-2 text-900">Users</h6>
+                            <h4 class="fs-3 fw-normal text-700 mb-0">@ViewBag.UsersC</h4>
+                        </div>
+                        <div class="col-auto h-100">
+                            <div style="height: 50px; min-width: 80px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" data-echarts="{&quot;xAxis&quot;:{&quot;show&quot;:false,&quot;boundaryGap&quot;:false},&quot;series&quot;:[{&quot;data&quot;:[3,7,6,8,5,12,11],&quot;type&quot;:&quot;line&quot;,&quot;symbol&quot;:&quot;none&quot;}],&quot;grid&quot;:{&quot;right&quot;:&quot;0px&quot;,&quot;left&quot;:&quot;0px&quot;,&quot;bottom&quot;:&quot;0px&quot;,&quot;top&quot;:&quot;0px&quot;}}" _echarts_instance_="ec_1654346248880"><div style="position: relative; width: 80px; height: 50px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="100" height="62" style="position: absolute; left: 0px; top: 0px; width: 80px; height: 50px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row flex-between-center">
+                        <div class="col d-md-flex d-lg-block flex-between-center">
+                            <h6 class="mb-md-0 mb-lg-2">Products</h6><span class="badge rounded-pill badge-soft-success"><svg class="svg-inline--fa fa-caret-up fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg><!-- <span class="fas fa-caret-up"></span> Font Awesome fontawesome.com --> </span>
+                        </div>
+                        <div class="col-auto">
+                            <h4 class="fs-3 fw-normal text-700" data-countup="{&quot;endValue&quot;:82.18,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;M&quot;,&quot;prefix&quot;:&quot;$&quot;}">@ViewBag.ProductsC</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row flex-between-center">
+                        <div class="col d-md-flex d-lg-block flex-between-center">
+                            <h6 class="mb-md-0 mb-lg-2">Stores</h6><span class="badge rounded-pill badge-soft-primary"><svg class="svg-inline--fa fa-caret-up fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg><!-- <span class="fas fa-caret-up"></span> Font Awesome fontawesome.com --> </span>
+                        </div>
+                        <div class="col-auto">
+                            <h4 class="fs-3 fw-normal text-primary" data-countup="{&quot;endValue&quot;:28.5,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;%&quot;}"> @ViewBag.StoresC</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-xxl-9 col-md-12">
+    <div class="card z-index-1" id="recentPurchaseTable" data-list="{&quot;valueNames&quot;:[&quot;name&quot;,&quot;email&quot;,&quot;product&quot;,&quot;payment&quot;,&quot;amount&quot;],&quot;page&quot;:7,&quot;pagination&quot;:true}">
+        <div class="card-header">
+            <div class="row flex-between-center">
+                <div class="col-6 col-sm-auto d-flex align-items-center pe-0">
+                    <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Recent Purchases </h5>
+                </div>
+                <div class="col-6 col-sm-auto ms-auto text-end ps-0">
+                    <div class="d-none" id="table-purchases-actions">
+                        <div class="d-flex">
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body px-0 py-0">
+            <div class="table-responsive scrollbar">
+                <table id="Report" class="table table-sm fs--1 mb-0 overflow-hidden">
+                    <thead class="bg-200 text-900">
+                        <tr>
+                            <th class="white-space-nowrap">
+                                <div class="form-check mb-0 d-flex align-items-center">
+                                </div>
+                            </th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="name">Customer</th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="email">Email</th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="product">Phone Number</th>
+                            <th class="sort pe-1 align-middle white-space-nowrap text-end" data-sort="amount">Amount</th>
+                            <th class="no-sort pe-1 align-middle data-table-row-action"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list" id="table-purchase-body">
+                        @foreach (var item in Model.Item2)
+                        {
+                            <tr class="btn-reveal-trigger">
+                                <td class="align-middle" style="width: 28px;">
+                                    <div class="form-check mb-0">
+                                    </div>
+                                </td>
+                                <th class="align-middle white-space-nowrap name">
+                                    <a href="../app/e-commerce/customer-details.html">
+                                        @Html.DisplayFor(modelItem => item.payment.User.Fullname)
+                                    </a>
+                                </th>
+                                <td class="align-middle white-space-nowrap email">
+                                    @Html.DisplayFor(modelItem => item.payment.User.Email)
+                                </td>
+                                <td class="align-middle white-space-nowrap product">
+                                    @Html.DisplayFor(modelItem => item.payment.User.Phonenumber)
+                                </td>
+
+                                <td class="align-middle text-end amount">
+                                    @Html.DisplayFor(modelItem => item.payment.Amount)
+                                </td>
+                                <td class="align-middle white-space-nowrap text-end">
+                                    <div class="dropstart font-sans-serif position-static d-inline-block">
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row align-items-center">
+                <div class="pagination d-none"><li class="active"><button class="page" type="button" data-i="1" data-page="7">1</button></li><li><button class="page" type="button" data-i="2" data-page="7">2</button></li></div>
+                <div class="col">
+                    <p class="mb-0 fs--1">
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</br>
+
+
+
+</br>
+
+
+<div class="card mb-3" id="ordersTable" data-list="{&quot;valueNames&quot;:[&quot;order&quot;,&quot;date&quot;,&quot;address&quot;,&quot;status&quot;,&quot;amount&quot;],&quot;page&quot;:10,&quot;pagination&quot;:true}">
+    <div class="card-header">
+        <div class="row flex-between-center">
+            <div class="col-4 col-sm-auto d-flex align-items-center pe-0">
+                <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Orders</h5>
+            </div>
+            <div class="col-8 col-sm-auto ms-auto text-end ps-0">
+                <div class="d-none" id="orders-bulk-actions">
+                </div>
+                <div id="orders-actions">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive scrollbar">
+            <table id="Report2" class="table table-sm table-striped fs--1 mb-0 overflow-hidden">
+                <thead class="bg-200 text-900">
+                    <tr>
+                        <th>
+                            <div class="form-check fs-0 mb-0 d-flex align-items-center">
+                            </div>
+                        </th>
+                        <th class="sort pe-1 align-middle white-space-nowrap" data-sort="order">            Order   </th>
+                        <th class="sort pe-1 align-middle white-space-nowrap pe-7" data-sort="date">         Date   </th>
+                        <th class="sort pe-1 align-middle white-space-nowrap text-center" data-sort="status">Status  </th>
+                        <th class="sort pe-1 align-middle white-space-nowrap text-end" data-sort="amount">   Amount  </th>
+                        <th class="sort pe-1 align-middle white-space-nowrap text-end" data-sort="amount">   Quantity </th>
+
+                        <th class="no-sort"></th>
+                    </tr>
+                </thead>
+                <tbody class="list" id="table-orders-body">
+                    @foreach (var item in Model.Item4)
+                    {
+
+                        <tr class="btn-reveal-trigger">
+                            <td class="align-middle" style="width: 28px;">
+                                <div class="form-check fs-0 mb-0 d-flex align-items-center">
+                                </div>
+                            </td>
+                            <td class="order py-2 align-middle white-space-nowrap">
+                                <a href="../../../app/e-commerce/orders/order-details.html"> <strong>#@item.order.Orderid</strong></a> by  @Html.DisplayFor(modelItem => item.useraccount.Fullname)
+                                <strong></strong><br><a href="mailto:ricky@example.com">
+                                    @Html.DisplayFor(modelItem => item.useraccount.Email)
+                                </a>
+                            </td>
+                            <td class="date py-2 align-middle">
+                                @Html.DisplayFor(modelItem => item.order.Dte)
+                            </td>
+                            <td class="status py-2 align-middle text-center fs-0 white-space-nowrap">
+                                @if (item.orderproduct.Status == "1")
+                                {
+                                    <span class="badge badge rounded-pill d-block badge-soft-success">Completed<svg class="svg-inline--fa fa-check fa-w-16 ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com --></span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge rounded-pill d-block badge-soft-warning">Pending<svg class="svg-inline--fa fa-stream fa-w-16 ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="stream" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M16 128h416c8.84 0 16-7.16 16-16V48c0-8.84-7.16-16-16-16H16C7.16 32 0 39.16 0 48v64c0 8.84 7.16 16 16 16zm480 80H80c-8.84 0-16 7.16-16 16v64c0 8.84 7.16 16 16 16h416c8.84 0 16-7.16 16-16v-64c0-8.84-7.16-16-16-16zm-64 176H16c-8.84 0-16 7.16-16 16v64c0 8.84 7.16 16 16 16h416c8.84 0 16-7.16 16-16v-64c0-8.84-7.16-16-16-16z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com --></span>
+                                }
+                            </td>
+                            <td class="amount py-2 align-middle text-end fs-0 fw-medium">@item.orderproduct.Totalamount</td>
+                            <td class="amount py-2 align-middle text-end fs-0 fw-medium">
+                                @Html.DisplayFor(modelItem => item.orderproduct.Qty)
+                            </td>
+
+                            <td class="py-2 align-middle white-space-nowrap text-end">
+                                <div class="dropdown font-sans-serif position-static">
+                                    <div class="dropdown-menu dropdown-menu-end border py-0" aria-labelledby="order-dropdown-0">
+                                        <div class="bg-white py-2">
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="col-xxl-9 col-md-12">
+    <div class="card z-index-1" id="recentPurchaseTable" data-list="{&quot;valueNames&quot;:[&quot;name&quot;,&quot;email&quot;,&quot;product&quot;,&quot;payment&quot;,&quot;amount&quot;],&quot;page&quot;:7,&quot;pagination&quot;:true}">
+        <div class="card-header">
+            <div class="row flex-between-center">
+                <div class="col-6 col-sm-auto d-flex align-items-center pe-0">
+                    <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Recent Users </h5>
+                </div>
+                <div class="col-6 col-sm-auto ms-auto text-end ps-0">
+                    <div class="d-none" id="table-purchases-actions">
+                        <div class="d-flex">
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body px-0 py-0">
+            <div class="table-responsive scrollbar">
+                <table id="Report4" class="table table-sm fs--1 mb-0 overflow-hidden">
+                    <thead class="bg-200 text-900">
+                        <tr>
+                            <th class="white-space-nowrap">
+                                <div class="form-check mb-0 d-flex align-items-center">
+                                </div>
+                            </th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="name">Customer</th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="email">Email</th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="product">Phone Number</th>
+                            <th class="sort pe-1 align-middle white-space-nowrap text-end" data-sort="amount">        </th>
+                            <th class="no-sort pe-1 align-middle data-table-row-action"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list" id="table-purchase-body">
+                        @foreach (var item in Model.Item1)
+                        {
+                            <tr class="btn-reveal-trigger">
+                                <td class="align-middle" style="width: 28px;">
+                                    <div class="form-check mb-0">
+                                    </div>
+                                </td>
+                                <th class="align-middle white-space-nowrap name">
+                                    <a href="../app/e-commerce/customer-details.html">
+                                        @Html.DisplayFor(modelItem => item.Fullname)
+                                    </a>
+                                </th>
+                                <td class="align-middle white-space-nowrap email">
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td class="align-middle white-space-nowrap product">
+                                    @Html.DisplayFor(modelItem => item.Phonenumber)
+                                </td>
+
+                                <td class="align-middle text-end amount">
+                                    <div class="col-auto">
+                                        <div class="avatar avatar-2xl">
+                                            <img class="rounded-circle" src="@Url.Content("~/Images/"+ item.Pic)" alt="" />
+                                        </div>
+                                </td>
+                                <td class="align-middle white-space-nowrap text-end">
+                                    <div class="dropstart font-sans-serif position-static d-inline-block">
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row align-items-center">
+                <div class="pagination d-none"><li class="active"><button class="page" type="button" data-i="1" data-page="7">1</button></li><li><button class="page" type="button" data-i="2" data-page="7">2</button></li></div>
+                <div class="col">
+                    <p class="mb-0 fs--1">
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</br>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header border-bottom">
+            <div class="row flex-between-end">
+                <div class="col-auto align-self-center">
+                    <h5 class="mb-0" data-anchor="data-anchor" id="hoverable-rows">All Items<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#hoverable-rows" style="padding-left: 0.375em;"></a></h5>
+                </div>
+                <div class="col-auto ms-auto">
+                    <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body pt-0">
+            <div class="tab-content">
+                <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-32bc75d3-359c-4b71-9a13-f78520f45e1d" id="dom-32bc75d3-359c-4b71-9a13-f78520f45e1d">
+                    <div class="table-responsive scrollbar">
+                        <table id="Report3" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="sort" scope="col">Product</th>
+                                    <th class="sort" scope="col">Store</th>
+                                    <th class="sort" scope="col"> </th>
+                                    <th class="sort" scope="col">Categories</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Item6)
+                                {
+                                    <tr class="hover-actions-trigger">
+                                        <td class="align-middle text-nowrap">
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar avatar-xl">
+                                                    <img class="rounded-circle" src="@Url.Content("~/Images/Products/"+ item.product.Pic)" alt="">
+
+                                                </div>
+                                                <div class="ms-2">
+                                                    @Html.DisplayFor(modelItem => item.product.Productname)
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle text-nowrap">@Html.DisplayFor(modelItem => item.store.Storename)</td>
+                                        <td class="w-auto">
+                                            <div class="btn-group btn-group hover-actions end-0 me-4">
+                                            </div>
+                                        </td>
+                                        <td class="align-middle text-nowrap">@Html.DisplayFor(modelItem => item.store.Category.Categoryname)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#Report').DataTable({
+            dom: 'Bfrtip',
+
+            buttons: ['copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5']
+        }
+        );
+    $('#Report').DataTable().buttons()
+});
+    $(document).ready(function () {
+        $('#Report1').DataTable({
+            dom: 'Bfrtip',
+
+            buttons: ['copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5']
+        }
+        );
+    $('#Report1').DataTable().buttons()
+});
+    $(document).ready(function () {
+        $('#Report2').DataTable({
+            dom: 'Bfrtip',
+
+            buttons: ['copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5']
+        }
+        );
+    $('#Report2').DataTable().buttons()
+});
+    $(document).ready(function () {
+        $('#Report4').DataTable({
+            dom: 'Bfrtip',
+
+            buttons: ['copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5']
+        }
+        );
+    $('#Report4').DataTable().buttons()
+});
+    $(document).ready(function () {
+        $('#Report3').DataTable({
+            dom: 'Bfrtip',
+
+            buttons: ['copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5']
+        }
+        );
+    $('#Report3').DataTable().buttons()
+});
+
+
+</script>

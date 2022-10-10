@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Waedist.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row g-3 mb-3">
+        <div class="col-md-6 col-xxl-3">
+            <div class="">
+
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Categoryname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Pic)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Categoryname)
+                                </td>
+                                <td>
+
+
+                                    <img src="@Url.Content("~/Images/Store"+ item.Pic)" style="height:250px" ; width:"250px;" />
+
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Categoryid">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Categoryid">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Categoryid">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

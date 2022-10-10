@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Waedist.Models.Store>
+
+@{
+    ViewData["Title"] = "Dashboard| ManageStores";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+
+
+
+<div class="col-xl-12 pe-xl-2">
+    <div class="card mb-3 h-lg-100">
+        <div class="card-header">
+            <div class="row flex-between-end">
+                <div class="col-auto align-self-center">
+                    <h5 class="mb-0" data-anchor="data-anchor" id="basic-example">Stores<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a></h5>
+                </div>
+                <div class="col-auto ms-auto">
+                    <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                        <a class="btn btn-sm active" asp-controller="Stores" asp-action="Create">Create New</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body bg-light">
+            <div class="tab-content">
+                <div class="row  " role="tabpanel" aria-labelledby="tab-dom-14c3402d-e89a-4345-96a2-6d6bfd4d40ed" id="dom-14c3402d-e89a-4345-96a2-6d6bfd4d40ed">
+                    @foreach (var s in Model)
+                    {
+                        <div class=" card overflow-hidden" style="width: 20rem; margin-left:65px; margin-top:30px ">
+                            <div class="card-img-top"><img style="height:400px ; margin:5px; padding:5px" class="img-fluid" src="@Url.Content("~/Images/Store/"+ s.Headpic)" alt="Card image cap"></div>
+                            <div class="card-body">
+                                <h4 class="card-title">@s.Totalsales</h4>
+                                <h5 class="card-title">@s.Categoryid</h5>
+
+                                <a style="background-color: #eeb7c3; margin-left:5px; border-color: #eeb7c3 ; border-radius:20px;" class="btn btn-primary btn-sm" asp-controller="Stores" asp-action="Edit" asp-route-id="@s.Storeid">Edit Product</a>
+                                <a style="margin-top: 7px;margin-left:5px; background-color: #eeb7c3; border-color: #eeb7c3 ; border-radius:20px; color:brown " asp-controller="Stores" asp-action="Delete" asp-route-id="@s.Storeid" class=" btn btn-primary btn-sm">Delete Product</a>
+
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model IEnumerable<Waedist.Models.Store>
+
+    @{
+        Layout = "_AdminDashboardLayout";
+
+    }
+    <h1>Manage Stores</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Storename)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Smallpic)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Headpic)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Storename)
+                    </td>
+                    <td>
+                        <img style="height:150px; width:220px;" src="@Url.Content("~/Images/Store/" + item.Headpic)" class="card__image" alt="" />
+
+
+                    </td>
+                    <td>
+                        <img style="height:150px; width:220px;" src="@Url.Content("~/Images/Store/" + item.Smallpic) " class="card__image" alt="" />
+
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+
+
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Category.Categoryname)
+                    </td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Storeid">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Storeid">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Storeid">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@

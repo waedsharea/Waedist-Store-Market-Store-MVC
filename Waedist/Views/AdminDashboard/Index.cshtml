@@ -1,0 +1,579 @@
+﻿@model Tuple<IEnumerable<Useraccount>, IEnumerable<Contactu>, IEnumerable<Testmoninal>, IEnumerable<JoinUserOrder>, IEnumerable<Orderr>, IEnumerable<Store>>
+
+@{
+    Layout = "_AdminDashboardLayout";
+    ViewData["Title"] = "Dashboard";
+    decimal totals = 0;
+    decimal totalr = 0;
+    foreach (var i in Model.Item6)
+    {
+        totals +=(decimal)i.Totalsales;
+        totalr += (decimal)i.Monthlyrent;
+
+    }
+}
+
+
+
+<style>
+    .dataTables_info {
+        font-size: xx-small;
+        margin-left: 5px;
+    }
+
+    .paginate_button previous disabled {
+        font-size: xx-small;
+        margin: 5px;
+        margin-bottom: 20px;
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        padding: .5rem .75rem;
+        position: relative;
+        display: block;
+        color: #fff;
+        background-color: #ebb6c1;
+        border: 1pxsolidvar(--falcon-pagination-border-color);
+        -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    }
+
+    .paginate_button {
+        font-size: xx-small;
+        margin: 5px;
+        margin-bottom: 20px;
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        padding: .5rem .75rem;
+        position: relative;
+        color: #fff;
+        background-color: #ebb6c1;
+        border: 1pxsolidvar(--falcon-pagination-border-color);
+        -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    }
+
+        .paginate_button.active {
+            z-index: 3;
+            color: #fff;
+            background-color: #bfc9d7;
+            border-color: #fdfdfd;
+        }
+
+    input, button, select, optgroup, textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        border-radius: 5px;
+        border: solid;
+        border-color: #eeb0bc;
+        /* height: 24px; */
+    }
+
+
+
+    .paginate_button.hoover {
+        text-decoration: none;
+        color: white;
+        background-color: darkgrey;
+    }
+
+
+
+    .paginate_button current {
+        display: none;
+    }
+
+    .paginate_button next disabled {
+        display: none;
+    }
+
+    .aria-controls {
+        border-radius: 20px;
+    }
+
+    .buttons-html5 {
+        margin-top: 30px;
+        background-color: #eeb0bc;
+        border-color: #eeb0bc;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        ;
+        width: 100px;
+        font-family: Arial;
+        margin: 10px;
+    }
+</style>
+
+
+
+<div class="row g-3 mb-3">
+    <div class="col-md-6 col-xxl-3">
+        <div class="card h-md-100 ecommerce-card-min-width">
+            <div class="card-header pb-0">
+                <h6 class="mb-0 mt-2 d-flex align-items-center">Total Sales<span class="ms-1 text-400" data-bs-toggle="tooltip" data-bs-placement="top" title="Calculated according to last week's sales"><span class="far fa-question-circle" data-fa-transform="shrink-1"></span></span></h6>
+            </div>
+            <div class="card-body d-flex flex-column justify-content-end">
+                <div class="row">
+                    <div class="col">
+                        <p class="font-sans-serif lh-1 mb-1 fs-4">$@ViewBag.Totalsales</p><span class="badge badge-soft-success rounded-pill fs--2">++</span>
+                    </div>
+                    <div class="col-auto ps-0">
+                        <div class="echart-bar-weekly-sales h-100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xxl-3">
+        <div " class="card h-md-100">
+            <div class="card-header pb-0">
+                <h6 class="mb-0 mt-2">Total Orders</h6>
+            </div>
+            <div class="card-body d-flex flex-column justify-content-end">
+                <div class="row justify-content-between">
+                    <div class="col-auto align-self-end">
+                        <div class="fs-4 fw-normal font-sans-serif text-700 lh-1 mb-1">
+                            @ViewBag.OrdersC
+                        </div><span class="badge rounded-pill fs--2 bg-200 text-primary"><span class="fas fa-caret-up me-1"></span></span>
+                    </div>
+                    <div class="col-auto ps-0 mt-n4">
+                        <div class="echart-default-total-order" data-echarts='{"tooltip":{"trigger":"axis","formatter":"{b0} : {c0}"},"xAxis":{"data":["Week 4","Week 5","week 6","week 7"]},"series":[{"type":"line","data":[20,40,100,120],"smooth":true,"lineStyle":{"width":3}}],"grid":{"bottom":"2%","top":"2%","right":"10px","left":"10px"}}' data-echart-responsive="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row flex-between-center g-0">
+                        <div class="col-6 d-lg-block flex-between-center">
+                            <h6 class="mb-2 text-900">Users</h6>
+                            <h4 class="fs-3 fw-normal text-700 mb-0">@ViewBag.UsersC</h4>
+                        </div>
+                        <div class="col-auto h-100">
+                            <div style="height: 50px; min-width: 80px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" data-echarts="{&quot;xAxis&quot;:{&quot;show&quot;:false,&quot;boundaryGap&quot;:false},&quot;series&quot;:[{&quot;data&quot;:[3,7,6,8,5,12,11],&quot;type&quot;:&quot;line&quot;,&quot;symbol&quot;:&quot;none&quot;}],&quot;grid&quot;:{&quot;right&quot;:&quot;0px&quot;,&quot;left&quot;:&quot;0px&quot;,&quot;bottom&quot;:&quot;0px&quot;,&quot;top&quot;:&quot;0px&quot;}}" _echarts_instance_="ec_1654346248880"><div style="position: relative; width: 80px; height: 50px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="100" height="62" style="position: absolute; left: 0px; top: 0px; width: 80px; height: 50px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row flex-between-center">
+                        <div class="col d-md-flex d-lg-block flex-between-center">
+                            <h6 class="mb-md-0 mb-lg-2">Products</h6><span class="badge rounded-pill badge-soft-success"><svg class="svg-inline--fa fa-caret-up fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg><!-- <span class="fas fa-caret-up"></span> Font Awesome fontawesome.com --> </span>
+                        </div>
+                        <div class="col-auto">
+                            <h4 class="fs-3 fw-normal text-700" data-countup="{&quot;endValue&quot;:82.18,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;M&quot;,&quot;prefix&quot;:&quot;$&quot;}">@ViewBag.ProductsC</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row flex-between-center">
+                        <div class="col d-md-flex d-lg-block flex-between-center">
+                            <h6 class="mb-md-0 mb-lg-2">Stores</h6><span class="badge rounded-pill badge-soft-primary"><svg class="svg-inline--fa fa-caret-up fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg><!-- <span class="fas fa-caret-up"></span> Font Awesome fontawesome.com --> </span>
+                        </div>
+                        <div class="col-auto">
+                            <h4 class="fs-3 fw-normal text-primary" data-countup="{&quot;endValue&quot;:28.5,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;%&quot;}"> @ViewBag.StoresC</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card product-share-doughnut-width">
+                <div class="card-header pb-0">
+                    <h6 class="mb-0 mt-2 d-flex align-items-center">Product Share</h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-column justify-content-between">
+                            <p class="font-sans-serif lh-1 mb-1 fs-2">
+                                @Math.Round((double)((totals - totalr) / (totals) * 100), 2)%
+                            </p><span class="badge badge-soft-warning rounded-pill fs--2"><svg class="svg-inline--fa fa-caret-up fa-w-10 me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg><!-- <span class="fas fa-caret-up me-1"></span> Font Awesome fontawesome.com -->$@totalr</span>
+                        </div>
+                        <div>
+                            <canvas class="my-n5" id="marketShareDoughnut" width="140" height="140" style="display: block; box-sizing: border-box; height: 112px; width: 112px;"></canvas>
+                            <p class="mb-0 text-center fs--2 mt-4 text-500">Net profit: <span class="text-800">$@(totals - totalr) </span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-md-100 h-100">
+                <div class="card-body">
+                    <div class="row h-100 justify-content-between g-0">
+                        <div class="col-5 col-sm-6 col-xxl pe-2">
+                            <h6 class="mt-1">Top Stores</h6>
+                            <div class="fs--2 mt-3">
+                                <div class="d-flex flex-between-center mb-1">
+                                    <div class="d-flex align-items-center"><span class="dot bg-primary"></span><span class="fw-semi-bold">@ViewBag.top[0].Storename</span></div>
+                                    <div class="d-xxl-none">$@ViewBag.top[0].Totalsales</div>
+                                </div>
+                                <div class="d-flex flex-between-center mb-1">
+                                    <div class="d-flex align-items-center"><span class="dot bg-info"></span><span class="fw-semi-bold">@ViewBag.top[1].Storename</span></div>
+                                    <div class="d-xxl-none">$@ViewBag.top[1].Totalsales</div>
+                                </div>
+                                <div class="d-flex flex-between-center mb-1">
+                                    <div class="d-flex align-items-center"><span class="dot bg-warning"></span><span class="fw-semi-bold">@ViewBag.top[2].Storename</span></div>
+                                    <div class="d-xxl-none">$@ViewBag.top[2].Totalsales</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto position-relative">
+                            <div class="echart-product-share" _echarts_instance_="ec_1655046484169" style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative;"><div style="position: relative; width: 106px; height: 106px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="132" height="132" style="position: absolute; left: 0px; top: 0px; width: 106px; height: 106px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+                            <div class="position-absolute top-50 start-50 translate-middle text-dark fs-2">$@(Math.Round(((ViewBag.top[0].Totalsales + ViewBag.top[1].Totalsales + ViewBag.top[2].Totalsales)/3),1))</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="card h-lg-100 overflow-hidden">
+    <div class="card-body p-0">
+        <div class="card mb-3">
+            <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);">
+            </div>
+            <!--/.bg-holder-->
+
+            <div class="card-body position-relative">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Recent Customers</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive scrollbar">
+            <div class="table-responsive scrollbar">
+                <table class="table table-hover table-striped overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Item1)
+                        {
+                            <tr class="hover-actions-trigger">
+                                <td class="align-middle text-nowrap">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-xl">
+                                            <img class="rounded-circle" src="@Url.Content("~/Images/"+ item.Pic)" alt="">
+
+                                        </div>
+                                        <div class="ms-2">
+                                            @item.Fullname
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle text-nowrap">
+                                    @item.Email
+                                </td>
+                                <td style="margin-right:50px" class="align-middle text-nowrap">
+                                    @item.Phonenumber
+                                </td>
+                                <td class="w-auto">
+                                    <div class="btn-group btn-group hover-actions end-0 me-4">
+                                        <!--<a href="/Useraccounts/Edit/@item.Userid" class="btn btn-light pe-2" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Details" aria-label="Details"><svg class="svg-inline--fa chevron-right fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg>--><!-- <span class="fas fa-edit"></span> Font Awesome fontawesome.com --><!--</a>-->
+                                    </div>
+                                </td>
+                                <td style="margin-right:50px" class="align-middle text-nowrap">
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row g-3 mb-3">
+    <div class="col-xxl-6 col-lg-6 order-xxl-1">
+        <div class="card h-md-100">
+            <div class="card-header">
+                <h6 class="mb-0">Recent Messages</h6>
+            </div>
+
+            <div class="card-body scrollbar recent-activity-body-height ps-2">
+                @foreach (var item in Model.Item2)
+                {
+                    <div class="row g-3 timeline timeline-primary timeline-past pb-card">
+                        <div class="col-auto ps-4 ms-2">
+                            <div class="ps-2">
+                                <div class="icon-item icon-item-sm rounded-circle bg-200 shadow-none"><span class="text-primary fas fa-envelope"></span></div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+
+                            <div class="row gx-0 border-bottom pb-card">
+                                <div class="col">
+                                    <h6 class="text-800 mb-1">
+                                        @Html.DisplayFor(modelItem => item.Subject)
+                                    </h6>
+                                    <p class="fs--1 text-600 mb-0">
+                                        @Html.DisplayFor(modelItem => item.Message)
+                                    </p>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="mailto:@item.Email" class="fs--2 text-500 mb-0">
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xxl-6 col-lg-6 order-xxl-1">
+        <div style=" background-color: var(--falcon-card-bg);" class="card h-md-100">
+            <div class="card">
+                <div class="kanban-column-header">
+                    <h5 class="fs-0 mb-0">Recent Testimonials <span class="text-500"></span></h5>
+                </div>
+                <div class="kanban-items-container scrollbar" tabindex="0">
+                    @foreach (var i in Model.Item3)
+                    {
+
+                        <div class="kanban-item" tabindex="0" style="">
+                            <div class="card kanban-item-card hover-actions-trigger">
+                                <div class="card-body">
+                                    <div class="position-relative">
+                                        <div class="dropdown font-sans-serif">
+
+
+                                            <a class="btn btn-sm btn-falcon-default kanban-item-dropdown-btn hover-actions" data-boundary="viewport" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-h fa-w-16" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis-h" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="fas fa-ellipsis-h" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com --></a>
+
+                                            <div class="dropdown-menu dropdown-menu-end py-0">
+                                                <a type="submit" class="dropdown-item" href="/Testmoninals/Edit/@i.Testmoninalid">Change state</a><a class="dropdown-item" href="/Testmoninals/Edit/@i.Testmoninalid"></a>
+                                                <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="/Testmoninals/Remove/@i.Testmoninalid">Remove</a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <h4 style="font-size:medium" class="mb-0 fw-medium font-sans-serif stretched-link" data-bs-toggle="modal" data-bs-target="#kanban-modal-1">@i.Message</h4>
+                                    <div class="kanban-item-footer cursor-default">
+                                        <div class="text-500 z-index-2">
+                                            <h4 style="font-size:small">
+                                                @i.Name
+                                            </h4>
+                                            <div>
+                                                @if (i.Status == "A")
+                                                {
+                                                    <span style="font-size:smaller" class="badge rounded-pill badge-soft-success">Accepted</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge rounded-pill badge-soft-warning">Pending</span>
+
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="z-index-2">
+
+                                            <div class="col-auto">
+                                                <div class="avatar avatar-3xl">
+                                                    <img class="rounded-circle" src="@Url.Content("~/Images/Testimonial/"+ i.Testimage)" alt="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+
+
+                </div>
+                <div class="kanban-column-footer">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<div  class="card mb-3" id="ordersTable" data-list="{&quot;valueNames&quot;:[&quot;order&quot;,&quot;date&quot;,&quot;address&quot;,&quot;status&quot;,&quot;amount&quot;],&quot;page&quot;:10,&quot;pagination&quot;:true}">
+    <div class="card-header">
+        <div class="row flex-between-center">
+            <div class="col-4 col-sm-auto d-flex align-items-center pe-0">
+                <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Orders</h5>
+            </div>
+            <div class="col-8 col-sm-auto ms-auto text-end ps-0">
+                <div class="d-none" id="orders-bulk-actions">
+                    <div class="d-flex">
+                        <select class="form-select form-select-sm" aria-label="Bulk actions">
+                     
+                        </select>
+                        <button class="btn btn-falcon-default btn-sm ms-2" type="button">Apply</button>
+                    </div>
+                </div>
+                <div id="orders-actions">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive scrollbar">
+            <table   id="order" class="table table-sm table-striped fs--1 mb-0 overflow-hidden">
+                <thead class="bg-200 text-900">
+                    <tr>
+
+                        <th class="sort pe-1 align-middle white-space-nowrap" data-sort="order">Order</th>
+                        <th class="sort pe-1 align-middle white-space-nowrap" data-sort="order">Product</th>
+
+                        <th class="sort pe-1 align-middle white-space-nowrap pe-7" data-sort="date">Date</th>
+                        <th class="sort pe-1 align-middle white-space-nowrap text-center" data-sort="status">Status</th>
+                        <th class="sort pe-1 align-middle white-space-nowrap text-end" data-sort="amount">Amount</th>
+                        <th class="sort pe-1 align-middle white-space-nowrap text-end" data-sort="amount">Quantity</th>
+
+                        <th class="no-sort pe-1 align-middle white-space-nowrap" data-sort="order">Store Name</th>
+
+
+                    </tr>
+                </thead>
+                <tbody class="list" id="table-orders-body">
+                    @foreach (var item in Model.Item4)
+                    {
+                    <tr class="btn-reveal-trigger">
+
+                        <td class="order py-2 align-middle white-space-nowrap">
+                            <a asp-action="ManageUsers"> <strong>#@item.order.Orderid</strong></a> by  @Html.DisplayFor(modelItem => item.useraccount.Fullname)
+                            <strong></strong><br><a href="mailto:ricky@example.com">
+                                @Html.DisplayFor(modelItem => item.useraccount.Email)
+                            </a>
+                        </td>
+                        <td class="amount py-2 align-middle text-end fs-0 fw-medium">
+                            @Html.DisplayFor(modelItem => item.product.Productname)
+                        </td>
+                        <td class="date py-2 align-middle">
+                            @Html.DisplayFor(modelItem => item.order.Dte)
+                        </td>
+                        <td class="status py-2 align-middle text-center fs-0 white-space-nowrap">
+                            @if (item.orderproduct.Status == "1")
+                            {
+                                <span class="badge badge rounded-pill d-block badge-soft-success">Completed<svg class="svg-inline--fa fa-check fa-w-16 ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com --></span>
+                            }
+                            else
+                            {
+                                <span class="badge badge rounded-pill d-block badge-soft-warning">Pending<svg class="svg-inline--fa fa-stream fa-w-16 ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="stream" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M16 128h416c8.84 0 16-7.16 16-16V48c0-8.84-7.16-16-16-16H16C7.16 32 0 39.16 0 48v64c0 8.84 7.16 16 16 16zm480 80H80c-8.84 0-16 7.16-16 16v64c0 8.84 7.16 16 16 16h416c8.84 0 16-7.16 16-16v-64c0-8.84-7.16-16-16-16zm-64 176H16c-8.84 0-16 7.16-16 16v64c0 8.84 7.16 16 16 16h416c8.84 0 16-7.16 16-16v-64c0-8.84-7.16-16-16-16z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com --></span>
+                            }
+                        </td>
+                        <td class="amount py-2 align-middle text-end fs-0 fw-medium">@item.orderproduct.Totalamount</td>
+                        <td class="amount py-2 align-middle text-end fs-0 fw-medium">
+                            @Html.DisplayFor(modelItem => item.orderproduct.Qty)
+                        </td>
+
+                        <td class="amount py-2 align-middle text-end fs-0 fw-medium">
+                            @Html.DisplayFor(modelItem => item.orderproduct.Storename)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="d-flex align-items-center justify-content-center">
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xxl-6 col-md-12 col-lg-12">
+    <div class="card shopping-cart-bar-min-height h-100">
+        <div class="card-header d-flex flex-between-center">
+            <h6 class="mb-0">Stores Sales</h6>
+            <div class="dropdown font-sans-serif btn-reveal-trigger">
+                <button class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal" type="button" id="dropdown-shopping-cart-bar" data-bs-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-h fa-w-16 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis-h" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z"></path></svg><!-- <span class="fas fa-ellipsis-h fs--2"></span> Font Awesome fontawesome.com --></button>
+            </div>
+        </div>
+        <div class="card-body py-0 d-flex align-items-center h-100">
+            <div class="flex-1">
+                @foreach (var item in Model.Item6)
+                {
+                    if (item.Totalsales>item.Monthlyrent)
+                    {
+                <div class="row g-0 align-items-center pb-3">
+                    <div class="col pe-4">
+                        <h6 class="fs--2 text-600">@item.Storename</h6>
+                        <div class="progress" style="height:5px">
+                            <div class="progress-bar rounded-3 bg-primary" role="progressbar" style="width: @Math.Round((double)((item.Totalsales - item.Monthlyrent) / (item.Totalsales) * 100), 2)% " aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-auto text-end">
+                        <p class="mb-0 text-900 font-sans-serif"><svg class="svg-inline--fa fa-caret-up fa-w-10 me-1 text-success" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg><!-- <span class="me-1 fas fa-caret-up text-success"></span> Font Awesome fontawesome.com -->$@Math.Round((double)((item.Totalsales - item.Monthlyrent) / (item.Totalsales) * 100), 2)%</p>
+                        <p class="mb-0 fs--2 text-500 fw-semi-bold"> Total Sales: <span class="text-600">$@item.Totalsales</span> </p>
+                    </div>
+                </div>
+                    }
+                    if (item.Totalsales < item.Monthlyrent)
+                    {
+                <div class="row g-0 align-items-center pb-3 border-top pt-3">
+                    <div class="col pe-4">
+                        <h6 class="fs--2 text-600">@item.Storename</h6>
+                        <div class="progress" style="height:5px">
+                            <div class="progress-bar rounded-3 bg-danger" role="progressbar" style="width: @Math.Round((double)((item.Monthlyrent - item.Totalsales) / (item.Monthlyrent) * 100), 2)% " aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-auto text-end">
+                        <p class="mb-0 text-900 font-sans-serif"><svg class="svg-inline--fa fa-caret-up fa-w-10 me-1 text-danger" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg><!-- <span class="me-1 fas fa-caret-up text-danger"></span> Font Awesome fontawesome.com -->$@Math.Round((double)((item.Monthlyrent - item.Totalsales) / (item.Monthlyrent) * 100), 2)%</p>
+                        <p class="mb-0 fs--2 text-500 fw-semi-bold"> Total Sales: <span class="text-600">$@item.Totalsales</span> </p>
+                    </div>
+                </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $('#order').DataTable({
+            dom: 'Bfrtip',
+
+            buttons: ['copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5']
+        }
+        );
+        $('#order').DataTable().buttons()
+    });
+</script>

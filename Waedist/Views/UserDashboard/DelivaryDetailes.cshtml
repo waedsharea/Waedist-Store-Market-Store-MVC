@@ -1,0 +1,134 @@
+﻿@model Waedist.Models.Orderdelivary
+
+@{
+    ViewData["Title"] = "DelivaryDetailes";
+    Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
+}
+
+@*<h1>DelivaryDetailes</h1>
+
+<h4>Orderdelivary</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="UserDashboard" asp-action="DelivaryDetailes" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+       
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Useraddress" class="control-label"></label>
+                <input asp-for="Useraddress" class="form-control" />
+                <span asp-validation-for="Useraddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Useremail" class="control-label"></label>
+                <input asp-for="Useremail" class="form-control" />
+                <span asp-validation-for="Useremail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Userphone" class="control-label"></label>
+                <input asp-for="Userphone" class="form-control" />
+                <span asp-validation-for="Userphone" class="text-danger"></span>
+            </div>
+        
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+<style>
+
+    .text-white {
+        color: #ebb6c1 !important;
+    }
+    .mb-8 {
+        margin-bottom: 1.5rem !important;
+    }
+</style>
+
+<div class="row mt-3 mx-3" style="margin-top:25px ;">
+    <div style=" border-radius:20px" class="col-md-3">
+        <div style="margin-top: 50px; margin-left: 10px;" class="text-center">
+            <i id="animationDemo" data-mdb-animation="slide-right" data-mdb-toggle="animation"
+               data-mdb-animation-reset="true" data-mdb-animation-start="onScroll"
+               data-mdb-animation-on-scroll="repeat" class="fas fa-3x fa-shipping-fast text-white"></i>
+            <h3 style="color:" class="mt-3 text-white">Welcome</h3>
+            <p class="white-text">You are 30 seconds away from compleating your order!</p>
+        </div>
+        <div class="text-center">
+        </div>
+
+
+    </div>
+    <div class="col-md-9 justify-content-center">
+        <div class="card card-custom pb-4">
+            <div class="card-body mt-0 mx-5">
+                <div class="text-center mb-3 pb-2 mt-3">
+                    <h4 style="color: #495057 ;">Delivery Details</h4>
+                </div>
+                <form asp-controller="UserDashboard" asp-action="DelivaryDetailes" method="post" enctype="multipart/form-data"class="mb-0">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row mb-8">
+                            <div class="">
+                                <div class="form-outline">
+                                    <label asp-for="Username" class="form-label" for="form9Example1">Full Name</label>
+                                    <input asp-for="Username" type="text" id="form9Example1" class="form-control input-custom" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input asp-for="Userphone" type="text" id="form9Example3" class="form-control input-custom" />
+                                    <label asp-for="Userphone" class="form-label" for="form9Example3">Phone Number</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input asp-for="Useremail" type="email" id="form9Example4" class="form-control input-custom" />
+                                    <label asp-for="Useremail" class="form-label" for="form9Example4">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input asp-for="Useraddress" type="text" id="form9Example6" class="form-control input-custom" />
+                                    <label asp-for="Useraddress" class="form-label" for="form9Example6">Address</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input asp-for="Postnumber" type="number" id="typeEmail" class="form-control input-custom" />
+                                    <label asp-for="Postnumber" class="form-label" for="typeEmail">Zip</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="float-end ">
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-rounded"
+                                    style="background-color: #ebb6c1; border-color: #ebb6c1 ">
+                                Place order
+                            </button>
+                        </div>
+
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

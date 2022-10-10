@@ -1,0 +1,71 @@
+﻿@model Waedist.Models.Bank
+
+
+
+<div class="card mb-3">
+    <div class="card-body bg-light">
+        <div class="tab-content">
+            <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-7e4858a6-2abb-4bb8-84c0-03bba1f1b987" id="dom-7e4858a6-2abb-4bb8-84c0-03bba1f1b987">
+                <button style="background-color: #ebb6c1; border-color: #ebb6c1;" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Proceed To Check Out By Visa Card </button>
+
+                <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg mt-6" role="document">
+                        <div style="height:0px" class="modal-content border-0">
+                            <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1">
+                                <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-0">
+                                <div class="col-lg-8 p-0">
+                                    <div class="card h-auto align-center" style="width:100% ; margin-left:140px">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Billing Details</h5>
+                                        </div>
+                                        <form asp-action="_Payment" method="post">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <input type="hidden" asp-for="Payid" />
+                                            <input type="hidden" asp-for="Amount" />
+                                            <input type="hidden" asp-for="Payid" />
+
+
+                                            <div class="card-body bg-light">
+                                                <div class="form-check mb-0">
+                                                    <label class="form-check-label d-flex align-items-center mb-0" for="credit-card">
+                                                        <span class="fs-1 text-nowrap">Credit Card</span><img class="d-none d-sm-inline-block ms-2 mt-lg-0" src="~/DashboardStatics/img/icons/icon-payment-methods.png" height="20" alt="">
+                                                    </label>
+                                                </div>
+                                                <p class="fs--1 mb-4">Safe money transfer using your bank accounts. Visa, maestro, discover, american express.</p>
+                                                <div class="row gx-3 mb-3">
+                                                    <div class="col">
+                                                        <label asp-for="Cardnumber" class="form-label ls text-uppercase text-600 fw-semi-bold mb-0 fs--1">Card Number</label>
+                                                        <input asp-for="Cardnumber" class="form-control" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" type="text">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label class="form-label ls text-uppercase text-600 fw-semi-bold mb-0 fs--1">Card Owner</label>
+                                                        <input class="form-control" id="cardName" value=" @ViewBag.UserName" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="row gx-3">
+                                                    <div class="col-6 col-sm-3">
+                                                        <label class="form-label ls text-uppercase text-600 fw-semi-bold mb-0 fs--1" for="expDate">Exp Date</label>
+                                                        <input class="form-control" id="expDate" placeholder="15/2024" type="text">
+                                                    </div>
+                                                    <div class="col-6 col-sm-3">
+                                                        <label asp-for="Cvv" class="form-label ls text-uppercase text-600 fw-semi-bold mb-0 fs--1" for="cvv">CVV<span class="ms-1" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Card verification value" aria-label="Card verification value"><svg class="svg-inline--fa fa-question-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="question-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z"></path></svg><!-- <span class="fa fa-question-circle"></span> Font Awesome fontawesome.com --></span></label>
+                                                        <input asp-for="Cvv" class="form-control" id="cvv" placeholder="123" maxlength="3" pattern="[0-9]{3}" type="text">
+                                                    </div>
+                                                    <div style="height:60px" class="card-header">
+                                                        <button  style="background-color: #ebb6c1; border-color: #ebb6c1; color:aliceblue" class="btn  r me-1 mb-1" type="submit">Confirm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,252 @@
+﻿@model Waedist.Models.Useraccount
+
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+
+    var login = ViewBag.Login;
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="~/Images/wLogo.png" type="image/x-icon">
+
+    <meta charset="utf-8">
+    <title>Waedist| Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="colorlib.com">
+    <link href="~/ShopsCardsStatics/CardsCSS.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/animate.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/aos.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/flaticon.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/icomoon.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/style.css">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="~/RegisterStatics/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/RegisterStatics/css/style.css">
+    <link href="~/RegisterStatics/css/Registercss.css" rel="stylesheet" />
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-dark" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">WAEDist</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li style="color:black" class="nav-item active"><a asp-controller="Home" asp-action="Index" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a asp-controller="Home" asp-action="Aboutus" class="nav-link">About</a></li>
+                    <li class="nav-item"><a asp-controller="Home" asp-action="Contactus" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a asp-controller="Authentication" asp-action="Register" class="nav-link">Register</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div style=" height:380px;margin-top:150px;" class="card">
+                    <h2 class="card-title text-center">Welcome <span style="color: #f1b8c4">Back</span></h2>
+                    <div class="card-body py-md-4">
+                        <form asp-action="Login" method="post" enctype="multipart/form-data" _lpchecked="1">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="form-header">
+                                <div class="form-group">
+                                    @if (ViewBag.flag == 0)
+                                    {
+                                        <p style="margin-left:15px"><span style="color:red">Incorrect Email or Password</span></p>
+                                    }
+                                        <div class="form-group">
+                                        <input required asp-for="Email" type="Email" name="Email" id="Email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                    <div class="form-group">
+                                        <input required asp-for="Password" type="password" name="Password" class="form-control" id="password" placeholder="Password">
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+
+
+
+                                    <button type="submit" value="Login" class="btn btn-primary">Log In</button>
+
+                                    <div class="d-flex flex-row align-items-center justify-content-between">
+                                        <a asp-action="Register">Register ? </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*
+
+
+        <form asp-action="Login" method="POST" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label for="Email"><i class="sr-only"></i>Email</label>
+                                <input type="email" name="Email" id="Email" placeholder="Email address" class="form-control" />
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="Password"><i class="sr-only"></i>Password</label>
+                                <input type="password" name="Password" id="Password" placeholder="Password" class="form-control" />
+                            </div>
+                            <div class="form-group mb-4">
+                                <input class="btn btn-block login-btn mb-4" type="submit" value="Login">
+                            </div>
+                        </form>
+        <div class="wrapper">
+            <form action="">
+                <div id="wizard">
+                    <!-- SECTION 1 -->
+                    <h4></h4>
+                    <section>
+                        <div class="form-header">
+                            <div class="avartar">
+                                <a href="#">
+                                    <img src="/RegisterStatics/images/avartar.png" alt="">
+                                </a>
+                                <div class="avartar-picker">
+                                    <input type="file" name="file-1[]" id="file-1" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                                    <label for="file-1">
+                                        <i class="zmdi zmdi-camera"></i>
+                                        <span>Choose Picture</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-holder active">
+                                    <input type="text" placeholder="First Name" class="form-control">
+                                </div>
+                                <div class="form-holder">
+                                    <input type="text" placeholder="Last Name" class="form-control">
+                                </div>
+                                <div class="form-holder">
+                                    <input type="text" placeholder="Team Name" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-holder">
+                            <input type="text" placeholder="Email" class="form-control">
+                        </div>
+                        <div class="form-holder">
+                            <input type="password" placeholder="Create a password" class="form-control">
+                        </div>
+                    </section>
+
+                    <!-- SECTION 2 -->
+                    <h4></h4>
+                    <section>
+                        <div class="grid">
+                            <div class="row">
+                                <a href="#" class="grid-item" style="background-image: url(images/programming-bg.jpg);">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/programming.png" alt="">
+                                        <span>Programming</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="grid-item" style="background-image: url('images/research-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/research.png" alt="">
+                                        <span>Research</span>
+                                    </div>
+
+                                </a>
+                                <a href="#" class="grid-item" style="background-image: url('images/teacher-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/teacher.png" alt="">
+                                        <span>Teacher</span>
+                                    </div>
+
+                                </a>
+                            </div>
+                            <div class="row">
+                                <a href="#" class="grid-item" style="background-image: url('images/tour-guide-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/tour-guide.png" alt="">
+                                        <span>Tour Guide</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="grid-item" style="background-image: url('images/business-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/business.png" alt="">
+                                        <span>Business</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="grid-item" style="background-image: url('images/artist-bg.jpg');">
+                                    <div class="inner">
+                                        <img src="~/RegisterStatics/images/artist.png" alt="">
+                                        <span>Artist</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SECTION 3 -->
+                    <h4></h4>
+                    <section>
+
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="Street Name" class="form-control">
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Street Number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="City" class="form-control">
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Country" class="form-control">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </div>
+
+
+    *@
+    <!-- Template created and distributed by Colorlib -->
+</body>
+</html>

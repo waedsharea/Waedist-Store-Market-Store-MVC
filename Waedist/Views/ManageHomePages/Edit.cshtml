@@ -1,0 +1,194 @@
+﻿@model Waedist.Models.Home
+
+@{
+    ViewData["Title"] = "Dashboard| Manage Home";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+}
+
+@*
+    <h1>Edit</h1>
+
+    <h4>Home</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Homeid" />
+                <div class="form-group">
+                    <label asp-for="Companylogo" class="control-label"></label>
+                    <input asp-for="Companylogo" class="form-control" />
+                    <span asp-validation-for="Companylogo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tittlepic" class="control-label"></label>
+                    <input asp-for="Tittlepic" class="form-control" />
+                    <span asp-validation-for="Tittlepic" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tittle" class="control-label"></label>
+                    <input asp-for="Tittle" class="form-control" />
+                    <span asp-validation-for="Tittle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Companyname" class="control-label"></label>
+                    <input asp-for="Companyname" class="form-control" />
+                    <span asp-validation-for="Companyname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Headertext" class="control-label"></label>
+                    <input asp-for="Headertext" class="form-control" />
+                    <span asp-validation-for="Headertext" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Asidertittle" class="control-label"></label>
+                    <input asp-for="Asidertittle" class="form-control" />
+                    <span asp-validation-for="Asidertittle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Companyemail" class="control-label"></label>
+                    <input asp-for="Companyemail" class="form-control" />
+                    <span asp-validation-for="Companyemail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Companyphone" class="control-label"></label>
+                    <input asp-for="Companyphone" class="form-control" />
+                    <span asp-validation-for="Companyphone" class="text-danger"></span>
+                </div>
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+*@
+
+@*@foreach (var i in ViewBag.Homes)
+{
+    <div style=" background-color: rgba(255, 222, 222, 0.7); " class="position-relative py-6 py-lg-8 light">
+        <div class="bg-holder rounded-3 overlay overlay-0" style=" background-color: rgba(255, 222, 222, 0.7); ">
+            <img style="height:450px; width:920px;" src="@Url.Content("~/Images/Home/" + i.Tittlepic) " class="card__image" alt="" />
+
+        </div>--> /.bg-holder
+        <div class="position-relative text-center">
+        </div>
+    </div>
+}*@
+
+@foreach (var w in ViewBag.Homes)
+{
+
+
+    <a href="../../../assets/img/generic/11.jpg" data-gallery="gallery-2">
+        <img style=" height:450px" class="img-fluid rounded"  src="@Url.Content("~/Images/Home/"+ w.Tittlepic)" alt="" height="550" width="950" />
+    </a>
+}
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <div class="row flex-between-end">
+                <div class="col-auto align-self-center">
+                    <h5 class="mb-0" data-anchor="data-anchor" id="example">Manage Home Page<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#example" style="padding-left: 0.375em;"></a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body bg-light">
+            <div class="tab-content">
+
+
+                <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-aaae31fb-8418-4ebf-bfb2-12b905874396" id="dom-aaae31fb-8418-4ebf-bfb2-12b905874396">
+                    <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Homeid" />
+                        <input type="hidden" asp-for="Tittlepic" />
+                        <input type="hidden" asp-for="Companylogo" />
+
+
+                        <div class="mb-3">
+                            <label asp-for="Tittle" class="form-label">Page Title</label>
+                            <input asp-for="Tittle" class="form-control" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Asidertittle" class="form-label">Asiderbar Title</label>
+                            <input asp-for="Asidertittle" class="form-control" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Companyname" class="form-label">Website Name </label>
+                            <input asp-for="Companyname" class="form-control" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Headertext" class="form-label">Header </label>
+                            <input asp-for="Headertext" class="form-control" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="2"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Companyemail" class="form-label">Company Email</label>
+                            <input asp-for="Companyemail" class="form-control" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label">Address</label>
+                            <input asp-for="Address" class="form-control" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Companyphone" class="form-label">Phone Number</label>
+                            <input asp-for="Companyphone" class="form-control" type="text">
+                        </div>
+
+                        @*<div id="img1" class="form-group">
+                                <div class="dropzone dropzone-single p-0" data-dropzone="data-dropzone"  >
+                                    <div id="img1" class="fallback">
+
+                                        <input  name="img1" type="file" accept="image/*" id="img1" />
+
+                                    </div>
+                                    <div class="dz-preview dz-preview-single">
+                                        <div class="dz-preview-cover dz-complete">
+                                            <img class="dz-preview-img"  alt="..." data-dz-thumbnail="" /><a class="dz-remove text-danger" href="#!" data-dz-remove="data-dz-remove"><span class="fas fa-times"></span></a>
+                                            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                                            <div class="dz-errormessage m-1"><span data-dz-errormessage="data-dz-errormessage"></span></div>
+                                        </div>
+                                        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                                    </div>
+                                    <div class="dz-message" data-dz-message="data-dz-message">
+                                        <div class="dz-message-text">Drop your Image here</div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="form-group">
+                            <label for="img1" class="control-label">Header Image</label>
+                            <input type="file" accept="image/*" name="img1" id="img1" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="img2" class="control-label">Website Logo</label>
+                            <input type="file" accept="image/*" name="img2" id="img2" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <button style=" margin-top:10px; background-color: #eeb0bc; border-color: #eeb0bc; border-radius: 20px; " class="btn btn-primary rounded-sm" type="submit">Update </button>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+</div>

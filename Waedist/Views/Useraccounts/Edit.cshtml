@@ -1,0 +1,199 @@
+﻿@model Waedist.Models.Useraccount
+
+@{
+    ViewData["Title"] = "Edit Profile";
+    Layout = "_AdminDashboardLayout";
+}
+@*
+    <div class="row g-0">
+        <div class="col-lg-8 pe-lg-2">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="mb-0">Profile Settings</h5>
+                </div>
+                <div class="card-body bg-light">
+                    <form class="row g-3" asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="col-lg-12">
+                            <label asp-for="Fullname" class="form-label">Full Name</label>
+                            <input asp-for="Fullname" class="form-control" id="Fullname" name="Fullname" type="text">
+                            <span asp-validation-for="Fullname" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <label asp-for="Phonenumber" class="form-label" >Phone</label>
+                            <input asp-for="Phonenumber" class="form-control"  name="Phonenumber" id="Phonenumber" type="text">
+                            <span asp-validation-for="Phonenumber" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="img" class="control-label"></label>
+                            <input type="file" accept="image/*" name="img" id="img" class="form-control" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" name="Email" id="Email" type="text">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password"  class="form-label"></label>
+                            <input asp-for="Password" name="Password" id="Password" class="form-label" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Roleid" />
+
+
+
+                        <div class="col-12 d-flex justify-content-end">
+                            <button class="btn btn-primary" value="Save" type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+*@
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div style=" background-color: #FEFDFD " class="card mb-3 btn-reveal-trigger">
+            <div style="background-color: #FEFDFD; margin-bottom: 5.5rem !important; min-height: 12vh !important; " class="card-header position-relative min-vh-25 mb-8">
+                <div style="height:250px" class="cover-image">
+                    <!--/.bg-holder-->
+                    <video class="bg-video" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline">
+                        <source src="~/DashboardStatics/video/X2Download.com-Clouds%20in%20the%20pink%20sky%20at%20sunset%20(A).mp4" type="video/mp4">
+                        <source src="~/DashboardStatics/video/X2Download.com-Clouds%20in%20the%20pink%20sky%20at%20sunset%20(A).webm" type="video/webm">
+                    </video>
+                </div>
+
+
+                    <div class="avatar avatar-5xl avatar-profile shadow-sm img-thumbnail rounded-circle">
+                        <div class="h-100 w-100 rounded-circle overflow-hidden position-relative">
+                          
+                               
+                                    <img src="@Url.Content("~/Images/" +Model.Pic)" width="200" alt="" data-dz-thumbnail="data-dz-thumbnail">
+                          
+                            
+
+                              
+                      
+                         </div>
+                    <div class="col-12 position-absolute justify-content-end">
+                    
+                    
+                    
+                    
+                    </div>
+              
+
+
+                 </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row g-0">
+
+    <div class="col-12 pe-lg-2">
+        <div class="card mb-3">
+            <div style=" background-color: #FEFDFD " class="card-header">
+                <h5 class="mb-0">Profile Settings</h5>
+            </div>
+            <div class="card-body bg-light">
+                <form asp-action="Edit" enctype="multipart/form-data" class="row g-3">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Pic" />
+
+
+                    <input type="hidden" asp-for="Userid" />
+                    <div class="col-lg-12">
+                        <label asp-for="Fullname" class="form-label">Full Name</label>
+                        <input asp-for="Fullname" class="form-control" type="text">
+                        <span asp-validation-for="Fullname" class="text-danger"></span>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" type="email">
+                        <span asp-validation-for="Fullname" class="text-danger"></span>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <label asp-for="Phonenumber" class="form-label">Phone</label>
+                        <input asp-for="Phonenumber" class="form-control" type="number">
+                        <span asp-validation-for="Phonenumber" class="text-danger"></span>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <label for="img" class="form-label">Profile Picture</label>
+                        <input type="file" accept="image/*" name="img" id="img" class="form-control" />
+                    </div>
+
+                    <input type="hidden" asp-for="Pic" />
+
+                    <input type="hidden" asp-for="Password" />
+                    <input type="hidden" asp-for="Roleid" />
+
+
+                    <div class="col-12 d-flex justify-content-end">
+                        <button style=" background-color: #eeb0bc; border-color: #eeb0bc; border-radius: 20px; " class="btn btn-primary rounded-sm" type="submit">Update </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="mb-0">Change Password</h5>
+            </div>
+            <div class="card-body bg-light">
+                <form asp-action="Edit" enctype="multipart/form-data" class="row g-3">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Pic" />
+                    <input type="hidden" asp-for="Email" />
+                    <input type="hidden" asp-for="Phonenumber" />
+
+                    <input type="hidden" asp-for="Fullname" />
+                    <input type="hidden" asp-for="Roleid" />
+                    <input type="hidden" asp-for="Userid" />
+
+                    <div class="mb-3">
+                        @if (ViewBag.flag == 1)
+                        {
+                            <p><span style="font-size:smaller;color:red">Old password is incorrect </span></p>
+                        }
+                        @if (ViewBag.flag == 0)
+                        {
+                            <p><span style="font-size:smaller;color:green">Password changed</span></p>
+                        }
+
+                        <label name="Old" class="form-label" for="Old">Old Password</label>
+
+                        <input name="Old" class="form-control" type="password">
+                    </div>
+                    <div class="mb-3">
+                        <label name="Password" class="form-label" for="Password">New Password</label>
+                        <input name="password" class="form-control" type="password">
+                    </div>
+                    <button style=" background-color: #eeb0bc; border-color: #eeb0bc; border-radius:20px;" class="btn btn-primary d-block w-100" type="submit">Update Password </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

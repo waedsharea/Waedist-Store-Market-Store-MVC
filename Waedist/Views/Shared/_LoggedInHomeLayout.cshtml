@@ -1,0 +1,169 @@
+﻿@model Tuple<IEnumerable<Home>, IEnumerable<Aboutu>, IEnumerable<Category>, IEnumerable<Store>, IEnumerable<Testmoninal>, IEnumerable<Product>>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link rel="shortcut icon" href="~/Images/wLogo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/ShopsCardsStatics/CardsCSS.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/animate.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/aos.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="~/HomePanelStatics/css/flaticon.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/icomoon.css">
+    <link rel="stylesheet" href="~/HomePanelStatics/css/style.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">WAEDist</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a asp-controller="Home" asp-action="Index" class="nav-link">Home</a></li>
+                    @if (ViewBag.Roleid == 1)
+                    {
+                        <li class="nav-item active"><a asp-controller="AdminDashboard" asp-action="Index" class="nav-link">Dashboard</a></li>
+                    }
+                   @if (ViewBag.Roleid == 2)
+                    {
+                        <li class="nav-item active"><a asp-controller="UserDashboard" asp-action="Index" class="nav-link">Dashboard</a></li>
+
+                    }
+                    <li class="nav-item"><a asp-controller="Home" asp-action="Aboutus" class="nav-link">About</a></li>
+                    @if (ViewBag.Roleid == 1)
+                    {
+                        <li class="nav-item"><a asp-controller="AdminDashboard" asp-action="Logout" class="nav-link">Log Out</a></li>
+                    }
+                    @if (ViewBag.Roleid == 2)
+                    {
+                        <li class="nav-item"><a asp-controller="UserDashboard" asp-action="EndOrder" class="nav-link">Log Out</a></li>
+                    }
+                    <li class="nav-item"><a asp-controller="Home" asp-action="Contactus" class="nav-link">Contact</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    <div>
+        @RenderBody()
+        
+    </div>
+    <footer class="ftco-footer bg-light ftco-section">
+        @foreach (var item in ViewBag.Home)
+        {
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-md">
+                        <div class="ftco-footer-widget mb-4">
+                            <h2 class="ftco-heading-2">WAEDist</h2>
+                            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h2 class="ftco-heading-2">Menu</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-2 d-block">Shop</a></li>
+                                <li><a href="#" class="py-2 d-block">About</a></li>
+                                <li><a href="#" class="py-2 d-block">Journal</a></li>
+                                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ftco-footer-widget mb-4">
+                            <h2 class="ftco-heading-2">Help</h2>
+                            <div class="d-flex">
+                                <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+                                    <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+                                    <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+                                    <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+                                    <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+                                </ul>
+                                <ul class="list-unstyled">
+                                    <li><a href="#" class="py-2 d-block">FAQs</a></li>
+                                    <li><a href="#" class="py-2 d-block">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <div class="ftco-footer-widget mb-4">
+                            <h2 class="ftco-heading-2">Have a Questions?</h2>
+                            <div class="block-23 mb-3">
+                                <ul>
+
+                                    <li><span class="icon icon-map-marker"></span><span class="text">@item.Address</span></li>
+                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">@item.Companyphone</span></a></li>
+                                    <li><a href="#"><span class="icon icon-envelope"></span><span class="text">@item.Companyemail</span></a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This Online Market is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="" target="_blank">WAED</a> <a href="" target="_blank"></a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        }
+        </footer>
+    <script src="~/HomePanelStatics/js/jquery.min.js"></script>
+    <script src="~/HomePanelStatics/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/HomePanelStatics/js/popper.min.js"></script>
+    <script src="~/HomePanelStatics/js/bootstrap.min.js"></script>
+    <script src="~/HomePanelStatics/js/jquery.easing.1.3.js"></script>
+    <script src="~/HomePanelStatics/js/jquery.waypoints.min.js"></script>
+    <script src="~/HomePanelStatics/js/jquery.stellar.min.js"></script>
+    <script src="~/HomePanelStatics/js/owl.carousel.min.js"></script>
+    <script src="~/HomePanelStatics/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/HomePanelStatics/js/aos.js"></script>
+    <script src="~/HomePanelStatics/js/jquery.animateNumber.min.js"></script>
+    <script src="~/HomePanelStatics/js/bootstrap-datepicker.js"></script>
+    <script src="~/HomePanelStatics/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/HomePanelStatics/js/google-map.js"></script>
+    <script src="~/HomePanelStatics/js/main.js"></script>
+</body>
+</html>

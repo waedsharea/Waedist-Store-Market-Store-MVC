@@ -1,0 +1,136 @@
+﻿@model Waedist.Models.Orderproduct
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    string Date = DateTime.Now.ToString("dd-MM-yyyy");
+    var qnty = 0;
+}
+
+
+
+
+<div class="col-xl-12 pe-xl-2">
+    <div class="card mb-3 h-lg-100">
+        <div class="card-header">
+            <div class="row flex-between-end">
+                <div class="col-auto align-self-center">
+                    <h5 class="mb-0" data-anchor="data-anchor" id="basic-example">Products<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a></h5>
+                </div>
+                <div class="col-auto ms-auto">
+                    <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                        <a class="btn btn-sm active" asp-controller="Products" asp-action="Create">Create New</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body bg-light">
+            <div class="tab-content">
+                <div class="row  " role="tabpanel" aria-labelledby="tab-dom-14c3402d-e89a-4345-96a2-6d6bfd4d40ed" id="dom-14c3402d-e89a-4345-96a2-6d6bfd4d40ed">
+                    @foreach (var p in ViewBag.products)
+                    {
+                       
+                 
+
+                        <div class=" card overflow-hidden" style="width: 20rem; margin-left:65px; margin-top:30px ">
+                            <div class="card-img-top"><img style="height:400px ; margin:5px; padding:5px" class="img-fluid" src="@Url.Content("~/Images/Products/" + p.Pic)" alt="Card image cap"></div>
+                            <div class="card-body">
+                                <form asp-controller="UserDashboard" asp-action="AddToCart" method="post">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input asp-for=" Orderid" value="0" hidden />
+                                    <input asp-for="Productid" value="@p.Productid" hidden />
+                                    <h4 class="card-title">@p.Productname</h4>
+                                    <h4 style="font-size:smaller" class="card-title"> Price : @p.Price</h4>
+                                    <h5 style="font-size:smaller" class="card-title"> Value : @p.Productvalue</h5>
+
+
+                                    <div>
+                                        <div class="input-group input-group-sm flex-nowrap" data-quantity="data-quantity">
+                                            <a class="btn btn-sm btn-outline-secondary border-300 px-2" data-type="minus">-</a>
+                                            <input asp-for="Qty" form-control text-center px-2 input-spin-none" type="number" min="1" value="1" aria-label="Amount (to the nearest dollar)" style="width: 50px">
+                                            <a class="btn btn-sm btn-outline-secondary border-300 px-2" data-type="plus">+</a>
+                                            <input name="price" for="price" value="@p.Price" hidden />
+                                        </div>
+                                    </div>
+                                    <button type="submit" style="background-color: #eeb7c3; margin-left:5px; border-color: #eeb7c3 ; border-radius:20px;" class="btn btn-primary btn-sm">Add To Cart </button>
+
+                                </form>
+
+                            </div>
+                        </div>
+
+               
+                        
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>Create</h1>
+
+<h4>Orderproduct</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Orderid" class="control-label"></label>
+                <select asp-for="Orderid" class="form-control" asp-items="ViewBag.Orderid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Qty" class="control-label"></label>
+                <input asp-for="Qty" class="form-control" />
+                <span asp-validation-for="Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Totalamount" class="control-label"></label>
+                <input asp-for="Totalamount" class="form-control" />
+                <span asp-validation-for="Totalamount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Productid" class="control-label"></label>
+                <select asp-for="Productid" class="form-control" asp-items="ViewBag.Productid"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+

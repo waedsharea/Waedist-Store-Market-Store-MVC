@@ -1,0 +1,18 @@
+/* -------------------------------------------------------------------------- */
+/*                                Falcon Button                               */
+/* -------------------------------------------------------------------------- */
+/* prettier-ignore */
+/*# sourceMappingURL=user.css.map */
+.bg-holder.overlay:before {
+    position: absolute;
+    content: "";
+    background: rgb(245 220 220 / 70%);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bg-holder.overlay-0:before {
+    background: rgb(245 220 220 / 70%);
+}

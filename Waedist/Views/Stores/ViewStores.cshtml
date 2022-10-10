@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Waedist.Models.Store>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+
+
+<div class="hero-wrap hero-bread" style="background-image: url('/HomePanelStatics/images/bg_6.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">Stores</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Stores</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="cards card-body card-group justify-content-md-center">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="#" style="border-radius: calc(var(--curve) * 1px) 0 0 0;" class="card">
+                <img style="height:250px; width:320px;" src="@Url.Content("~/Images/Store/"+ item.Headpic)" class="card__image" alt="" />
+                <div class="card__overlay">
+
+                    <div class="card__header" style=" padding: 5px; ">
+                        <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                        <img class="card__thumb" src="~/Images/wLogo.png" alt="" />
+                        <div class="card__header-text">
+                            <h3 class="card__title" style="margin-top:20px">@item.Storename </h3>
+                            <span class="card__tagline">Number of Shops : 22 </span>
+                            <span class="card__status"></span>
+                        </div>
+                    </div>
+                    <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                </div>
+            </a>
+        </li>
+    }
+</ul>
